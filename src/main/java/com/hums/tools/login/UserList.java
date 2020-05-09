@@ -17,8 +17,8 @@ public class UserList{
         int type = -1;
 
         for(User u : this.uList){
-            if(u.username.equals(username)){
-                if(u.password.equals(password)){
+            if(u.getUsername().equals(username)){
+                if(u.getPassword().equals(password)){
                     if(u instanceof RoomManager){
                         type = 1;
                     }
