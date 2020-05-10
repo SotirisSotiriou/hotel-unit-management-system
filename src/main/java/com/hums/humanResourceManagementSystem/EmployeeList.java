@@ -10,6 +10,10 @@ public class EmployeeList {
 	public EmployeeList(ArrayList<Employee> employees) {
 		this.employees = employees;
 	}
+	
+	public EmployeeList() {
+		this.employees = new ArrayList<>();
+	}
 
 	public ArrayList<Employee> getEmployees() {
 		return employees;
