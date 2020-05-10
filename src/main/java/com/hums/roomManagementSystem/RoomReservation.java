@@ -98,7 +98,7 @@ public class RoomReservation {
 	public String toString() {
 		return "Room Reservation: " + this.id + ", " + "Chech in: " + this.checkIN.getDayOfMonth()
 				+ "/" + this.checkIN.getMonthValue() + "/" + this.checkIN.getYear() + ", "
-				+ ", " + "Check out: " + this.checkOUT.getDayOfMonth() + "/" + this.checkOUT.getMonthValue()
+				+ "Check out: " + this.checkOUT.getDayOfMonth() + "/" + this.checkOUT.getMonthValue()
 				+ "/" + this.checkOUT.getYear() + ", " + "Meals: " + this.mealsPerDay + "\n"
 				+ this.customer.toString();
 	}
