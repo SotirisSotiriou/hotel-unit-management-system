@@ -1,5 +1,6 @@
 package com.hums.roomManagementSystem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Room {
@@ -53,6 +54,26 @@ public abstract class Room {
 
 	public void setFeatures(ArrayList<RoomFeature> features) {
 		this.features = features;
+	}
+	
+	public boolean checkRoomFeatures(ArrayList<RoomFeature> wantedFeatures){
+		for(RoomFeature f : wantedFeatures) {
+			if(!this.getFeatures().contains(f)) 
+				return false;
+		}
+		return true;
+	}
+	
+	public boolean checkRoomAvailability(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations) {
+		boolean available = true;
+		for(RoomReservation rr : reservations) {
+			//if wanted check in or check out date is between another reservation check in and check out
+			if((checkIN.isAfter(rr.getCheckIN()) && checkIN.isBefore(rr.getCheckOUT())) ||
+				checkOUT.isAfter(rr.getCheckIN()) && checkOUT.isBefore(rr.getCheckOUT())) {
+				available = false;
+			}
+		}
+		return available;
 	}
 
 	public abstract double calculateCostPerDay();

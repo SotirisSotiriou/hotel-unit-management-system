@@ -34,4 +34,12 @@ public class RoomReservationList {
 	public void deleteReservation(RoomReservation reservation) {
 		this.reservations.remove(reservation);
 	}
+	
+	public boolean checkDateAvailability(LocalDate checkIN, LocalDate checkOUT) {
+		for(RoomReservation rr : this.reservations) {
+			if(rr.checkDate(checkIN, checkOUT) == false) return false;
+			
+		}
+		return true;
+	}
 }

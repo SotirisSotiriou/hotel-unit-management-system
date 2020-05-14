@@ -22,30 +22,12 @@ public class RoomList {
 		this.rooms = rooms;
 	}
 	
-	public boolean checkRoomAvailability(Room room, LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations) {
-		boolean available = true;
-		for(RoomReservation rr : reservations) {
-			//if wanted check in or check out date is between another reservation check in and check out
-			if((checkIN.isAfter(rr.getCheckIN()) && checkIN.isBefore(rr.getCheckOUT())) ||
-				checkOUT.isAfter(rr.getCheckIN()) && checkOUT.isBefore(rr.getCheckOUT())) {
-				available = false;
-			}
-		}
-		return available;
-	}
 	
-	public boolean checkRoomFeatures(Room room, ArrayList<RoomFeature> wantedFeatures){
-		for(RoomFeature f : wantedFeatures) {
-			if(!room.getFeatures().contains(f)) 
-				return false;
-		}
-		return true;
-	}
 	
-	public ArrayList<Room> getAvailableRooms(ArrayList<Room> rooms, LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
+	public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
 		ArrayList<Room> availableRooms = new ArrayList<>();
-		for(Room room : rooms) {
-			boolean available = this.checkRoomAvailability(room, checkIN, checkOUT, reservations);
+		for(Room room : this.rooms) {
+			boolean available = room.checkRoomAvailability(checkIN, checkOUT, reservations);
 			if(available) {
 				availableRooms.add(room);
 			}
@@ -53,10 +35,10 @@ public class RoomList {
 		return availableRooms;
 	}
 	
-	public ArrayList<Room> getRoomsWithFeatures(ArrayList<Room> rooms, ArrayList<RoomFeature> features){
+	public ArrayList<Room> getRoomsWithFeatures(ArrayList<RoomFeature> features){
 		ArrayList<Room> roomsWithFeatures = new ArrayList<>();
-		for(Room room : rooms) {
-			boolean hasFeatures = this.checkRoomFeatures(room, features);
+		for(Room room : this.rooms) {
+			boolean hasFeatures = room.checkRoomFeatures(features);
 			if(hasFeatures) {
 				roomsWithFeatures.add(room);
 			}

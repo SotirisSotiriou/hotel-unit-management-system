@@ -1,6 +1,8 @@
 package com.hums.roomManagementSystem;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import com.hums.Condition;
 
 public class RoomReservation {
@@ -93,6 +95,19 @@ public class RoomReservation {
 
 	public static int getNextID() {
 		return nextID;
+	}
+	
+	public boolean checkDate(LocalDate checkIN, LocalDate checkOUT) {
+		boolean check = true;
+		
+		if( (checkIN.isAfter(this.checkIN) && checkIN.isBefore(this.checkOUT)) 
+			|| (checkOUT.isAfter(this.checkIN) && checkOUT.isBefore(this.checkOUT)) 
+			|| checkIN.isEqual(this.checkIN) || checkOUT.isEqual(this.checkOUT) ) {
+			
+			check = false;
+		}
+		
+		return check;
 	}
 	
 	public String toString() {
