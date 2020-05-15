@@ -35,9 +35,9 @@ public class RoomList {
 		return availableRooms;
 	}
 	
-	public ArrayList<Room> getRoomsWithFeatures(ArrayList<RoomFeature> features){
+	public ArrayList<Room> getRoomsWithFeatures(ArrayList<Room> rooms, ArrayList<RoomFeature> features){
 		ArrayList<Room> roomsWithFeatures = new ArrayList<>();
-		for(Room room : this.rooms) {
+		for(Room room : rooms) {
 			boolean hasFeatures = room.checkRoomFeatures(features);
 			if(hasFeatures) {
 				roomsWithFeatures.add(room);
