@@ -9,11 +9,14 @@ public class Dish {
 	private int menu[];
 	public HashMap<Ingredient, Double> ingredients;
 	
-	public Dish(String Name, HashMap<Ingredient, Double> ingredients)
+	public Dish(String name_, HashMap<Ingredient, Double> ingredients_)
 	{
 		//***//
-		this.name = name;
-		this.ingredients = ingredients;
+		this.name = name_;
+		this.ingredients = ingredients_;
+		for (int i=0;i<7;i++) {
+			menu[i]=0;
+		}
 	}
 	
 	public String getName() {
