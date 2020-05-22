@@ -28,7 +28,7 @@ public class UserList{
                     else if(u instanceof RestaurantManager){
                         type = 3;
                     }
-                    else if(u instanceof HumanRecourceManager){
+                    else if(u instanceof HumanResourceManager){
                         type = 4;
                     }
                 }
@@ -47,5 +47,50 @@ public class UserList{
          * if type = 4 user logged in as restaurant manager
          */
         return type;
+    }
+    
+    
+    public void register(String firstname, String lastname, String username, String password, String email, String type) {
+    	switch(type) {
+    	case "Receptionist":
+    		User rm = new RoomManager(firstname, lastname, username, password, email);
+    		this.uList.add(rm);
+    		break;
+    	case "HR Manager":
+    		User hr = new HumanResourceManager(firstname, lastname, username, password, email);
+    		this.uList.add(hr);
+    		break;
+    	case "Event Manager":
+    		User em = new EventManager(firstname, lastname, username, password, email);
+    		this.uList.add(em);
+    		break;
+    	case "Restaurant Manager":
+    		User rem = new RestaurantManager(firstname, lastname, username, password, email);
+    		this.uList.add(rem);
+    		break;
+    	}
+    }
+    
+    public void addUser(User user) {
+    	this.uList.add(user);
+    }
+    
+    
+    public boolean usernameExists(String username) {
+    	for(User u : this.uList) {
+    		if(u.getUsername().equals(username)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public boolean emailExists(String email) {
+    	for(User u : this.uList) {
+    		if(u.getEmail().equals(email)) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }
