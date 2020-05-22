@@ -1,12 +1,18 @@
 package com.hums.tools.login;
 
-public class User{
+public abstract class User{
     private String username;
     private String password;
+    private String email;
+    private String firstname;
+    private String lastname;
 
-    public User(String username, String password){
-        this.username = username;
+    public User(String firstname, String lastname, String username, String password, String email){
+        this.firstname = firstname;
+        this.lastname = lastname;
+    	this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public String getUsername(){
