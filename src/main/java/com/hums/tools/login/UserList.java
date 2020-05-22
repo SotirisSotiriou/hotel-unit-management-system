@@ -38,6 +38,14 @@ public class UserList{
             }
         }
 
+        
+        /* if type = -1 user not exists
+         * if type = 0 user exists but password is wrong
+         * if type = 1 user logged in as receptionist
+         * if type = 2 user logged in as human resource manager
+         * if type = 3 user logged in as event manager
+         * if type = 4 user logged in as restaurant manager
+         */
         return type;
     }
 }
