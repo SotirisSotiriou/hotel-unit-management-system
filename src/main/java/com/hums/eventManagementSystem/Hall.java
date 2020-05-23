@@ -1,19 +1,35 @@
 package com.hums.eventManagementSystem;
 
-public class Hall implements Comparable<Hall>{
+import java.io.Serializable;
+
+
+public class Hall implements Comparable<Hall>, Serializable{
 
 	private int capacity;
 	private int code;
+	private String location;
 	
 	
-	public Hall(int capacity,int code)
+	public Hall(int capacity, String location)
 	{
+		//code is being assigned by HallList
 		this.capacity=capacity;
-		this.code=code;
+		this.location=location;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return ""+code+". "+location+", "+capacity;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public int getCapacity() {
 		return capacity;
 	}
@@ -23,33 +39,19 @@ public class Hall implements Comparable<Hall>{
 	}
 
 
-
-
-
-
 	public int getCode() {
 		return code;
 	}
-
-
-
-
-
 
 	public void setCode(int code) {
 		this.code = code;
 	}
 
-
-
-
-
-
 	public int compareTo(Hall h) {
 		
-		if(this.getCode()==h.getCode())
+		if(this.getCapacity()==h.getCapacity())
 		return 0;
-		else if(this.getCode()>h.getCode())
+		else if(this.getCapacity()>h.getCapacity())
 			return 1;
 		else
 			return -1;
