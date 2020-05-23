@@ -100,13 +100,14 @@ public class LoginFrame extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 300, 462);
+		setLocation(200, 200);
+		setSize(300, 350);
+		
 		contentPaneRegister = new JPanel();
 		contentPaneRegister.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPaneLogin = new JPanel();
 		contentPaneLogin.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPaneLogin.setLayout(null);
-		
 		
 		
 		contentPaneRegister.setLayout(null);
@@ -135,25 +136,25 @@ public class LoginFrame extends JFrame {
 	private void initComponentsLogin() {
 				
 		loginLabelUsername = new JLabel("Username");
-		loginLabelUsername.setBounds(80, 60, 61, 20);
+		loginLabelUsername.setBounds(80, 40, 61, 20);
 		contentPaneLogin.add(loginLabelUsername);
 		
 		loginLabelPassword = new JLabel("Password");
-		loginLabelPassword.setBounds(80, 130, 61, 20);
+		loginLabelPassword.setBounds(80, 110, 61, 20);
 		contentPaneLogin.add(loginLabelPassword);
 		
 		loginUsernameField = new JTextField();
-		loginUsernameField.setBounds(80, 80, 135, 20);
+		loginUsernameField.setBounds(80, 60, 135, 20);
 		contentPaneLogin.add(loginUsernameField);
 		loginUsernameField.setColumns(10);
 		
 		loginPasswordField = new JPasswordField();
-		loginPasswordField.setBounds(80, 150, 135, 20);
+		loginPasswordField.setBounds(80, 130, 135, 20);
 		contentPaneLogin.add(loginPasswordField);
 		
 		loginUsernameErrorMessage = new JLabel();
 		loginUsernameErrorMessage.setHorizontalAlignment(SwingConstants.LEFT);
-		loginUsernameErrorMessage.setBounds(80, 100, 160, 20);
+		loginUsernameErrorMessage.setBounds(80, 80, 160, 20);
 		loginUsernameErrorMessage.setForeground(Color.red);
 		loginUsernameErrorMessage.setFont(defaultErrorMessageFont);
 		contentPaneLogin.add(loginUsernameErrorMessage);
@@ -161,14 +162,14 @@ public class LoginFrame extends JFrame {
 		
 		loginPasswordErrorMessage = new JLabel();
 		loginPasswordErrorMessage.setHorizontalAlignment(SwingConstants.LEFT);
-		loginPasswordErrorMessage.setBounds(80, 170, 160, 20);
+		loginPasswordErrorMessage.setBounds(80, 150, 160, 20);
 		loginPasswordErrorMessage.setForeground(Color.red);
 		loginPasswordErrorMessage.setFont(defaultErrorMessageFont);
 		contentPaneLogin.add(loginPasswordErrorMessage);
 		loginPasswordErrorMessage.setVisible(false);
 		
 		loginButtonLogIn = new JButton("Log in");
-		loginButtonLogIn.setBounds(80, 200, 135, 23);
+		loginButtonLogIn.setBounds(80, 180, 135, 23);
 		contentPaneLogin.add(loginButtonLogIn);
 		loginButtonLogIn.addActionListener(new ActionListener() {
 
@@ -198,18 +199,22 @@ public class LoginFrame extends JFrame {
 					case 1:
 						JOptionPane.showMessageDialog(null, "Receptionist logged in successfully!");
 						//create new RMS main frame here
+						dispose();
 						break;
 					case 2:
 						JOptionPane.showMessageDialog(null, "Human Resource Manager logged in successfully!");
 						//create new EMS main frame here
+						dispose();
 						break;
 					case 3:
 						JOptionPane.showMessageDialog(null, "Event Manager logged in successfully!");
 						//create new REMS main frame here
+						dispose();
 						break;
 					case 4:
 						JOptionPane.showMessageDialog(null, "Restaurant Manager logged in successfully!");
 						//create new HRMS main frame here
+						dispose();
 						break;
 					}
 				}
@@ -220,13 +225,13 @@ public class LoginFrame extends JFrame {
 		loginLabelNotAUser = new JLabel("Not a user? Sign Up!");
 		loginLabelNotAUser.setHorizontalAlignment(SwingConstants.CENTER);
 		loginLabelNotAUser.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		loginLabelNotAUser.setBounds(81, 230, 135, 20);
+		loginLabelNotAUser.setBounds(81, 210, 135, 20);
 		contentPaneLogin.add(loginLabelNotAUser);
 		
 		loginLabelForgotPassword = new JLabel("Forgot Password?");
 		loginLabelForgotPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		loginLabelForgotPassword.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		loginLabelForgotPassword.setBounds(81, 260, 135, 20);
+		loginLabelForgotPassword.setBounds(81, 240, 135, 20);
 		contentPaneLogin.add(loginLabelForgotPassword);
 		
 	}
@@ -376,6 +381,9 @@ public class LoginFrame extends JFrame {
 					registerConfirmErrorMessage.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Registered successfully!");
 					uList.register(registerFirstName, registerLastName, registerUsername, registerPassword, registerEmail, registerComboBoxChoice);
+					cl.show(contentPaneLogin, "login");
+					setSize(300, 350);
+					setTitle("Login");
 				}else {
 					
 					//some fields are in incorrect form, show dialog message to warn
@@ -513,6 +521,7 @@ public class LoginFrame extends JFrame {
 				
 				cl.show(cards, "register");
 				setTitle("Register");
+				setSize(300, 460);
 			}
 			
 			//change color to link when you hover
@@ -667,6 +676,7 @@ public class LoginFrame extends JFrame {
 				loginPasswordField.setText("");
 				cl.show(cards,"login");
 				setTitle("Login");
+				setSize(300, 350);
 			}
 		});
 		
