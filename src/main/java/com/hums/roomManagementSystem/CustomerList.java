@@ -70,13 +70,12 @@ public class CustomerList{
 	}
 	
 	public boolean customerExists(String lastname, String firstname, String phone) {
-		boolean exists = false;
 		for(Customer c : this.customers) {
 			if(c.getLastname().equals(lastname) && c.getFirstname().equals(firstname) && c.getPhone().equals(phone)) {
-				exists = true;
+				return true;
 			}
 		}
-		return exists;
+		return false;
 	}
 	
 	public boolean customerExists(Customer customer) {
