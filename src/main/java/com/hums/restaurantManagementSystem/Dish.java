@@ -11,7 +11,6 @@ public class Dish {
 	
 	public Dish(String name_, HashMap<Ingredient, Double> ingredients_)
 	{
-		//***//
 		this.name = name_;
 		this.ingredients = ingredients_;
 		for (int i=0;i<7;i++) {

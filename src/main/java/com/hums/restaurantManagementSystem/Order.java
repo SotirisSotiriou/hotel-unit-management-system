@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Order {
 	
-	private ArrayList<Dish> order;
+	private ArrayList<Dish> order = new ArrayList();
 	
 	public Order(ArrayList<Dish> order)
 	{

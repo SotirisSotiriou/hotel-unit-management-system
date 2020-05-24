@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class DishList {
 	
-	private ArrayList<Dish> dishes;
+	private ArrayList<Dish> dishes = new ArrayList();
 	
-	public DishList()
+	public DishList(ArrayList<Dish> dishes)
 	{
-		dishes = new ArrayList();
+		this.dishes = dishes ;
 	}
 	
 	public void setDishes(ArrayList<Dish> dishes)

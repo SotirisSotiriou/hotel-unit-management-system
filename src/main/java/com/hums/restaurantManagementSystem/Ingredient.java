@@ -11,9 +11,8 @@ public class Ingredient {
 
 	public Ingredient(String name, double max_capacity, double min_capacity)
 	{
-		//***//
 		this.name = name;
-		this.quantity = 0; //****//
+		this.quantity = 0;
 		this.max_capacity = max_capacity;
 		this.min_capacity = min_capacity;
 	}

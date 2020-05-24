@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Storage {
 
-	private ArrayList<Ingredient> ingredients;
+	private ArrayList<Ingredient> ingredients = new ArrayList();
 	
-	public Storage()
+	public Storage(ArrayList<Ingredient> ingredients)
 	{
-		ingredients = new ArrayList();
+		this.ingredients = ingredients;
 	}
 	
 	public void setIngredients(ArrayList<Ingredient> ingredients)
@@ -20,7 +20,6 @@ public class Storage {
 	{
 		ingredients.add(ingredient);
 		//write to file//
-		//***//
 	}
 	
 	public ArrayList<Ingredient> getIngredients()
@@ -35,7 +34,6 @@ public class Storage {
 	
 	public void setIngredientQuantity(Ingredient ingredient, double quantity) 
 	{
-		//***//
 		ingredient.setCapacity(ingredient.getCapacity() - quantity);
 	}
 	
