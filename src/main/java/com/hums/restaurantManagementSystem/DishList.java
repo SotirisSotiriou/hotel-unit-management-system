@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DishList {
 	
-	private ArrayList<Dish> dishes = new ArrayList();
+	private ArrayList<Dish> dishes = new ArrayList<Dish>();
 	
 	public DishList(ArrayList<Dish> dishes)
 	{
@@ -37,5 +37,21 @@ public class DishList {
 				break;
 			}
 		}
+	}
+	
+	public void changeDishMenu(String dishname, ArrayList<Integer> dailyMenu) {
+		
+	}
+	
+	public ArrayList<int[]> getDishMenu() {
+		//gets all menu arrays from every dish in the DishList
+		//returns them in an ArrayList<int[]>
+		int[] menuMat = new int[7];
+		ArrayList<int[]> dishMenu = new ArrayList<int[]>();
+		for(int i=0;i<dishes.size();i++) {
+			menuMat=dishes.get(i).getMenu();
+			dishMenu.add(menuMat);
+		}
+		return dishMenu;
 	}
 }
