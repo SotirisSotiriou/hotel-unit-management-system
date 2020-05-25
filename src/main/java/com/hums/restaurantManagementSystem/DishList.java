@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DishList {
 	
-	private ArrayList<Dish> dishes = new ArrayList();
+	private ArrayList<Dish> dishes = new ArrayList<>();
 	
 	public DishList(ArrayList<Dish> dishes)
 	{

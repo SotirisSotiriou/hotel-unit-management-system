@@ -1,40 +1,55 @@
 package com.hums.restaurantManagementSystem;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Storage {
-
-	private ArrayList<Ingredient> ingredients = new ArrayList();
 	
-	public Storage(ArrayList<Ingredient> ingredients)
+	public HashMap<Ingredient, Double> ingredients = new HashMap<>();
+	
+	public Storage(HashMap<Ingredient, Double> ingredients)
 	{
 		this.ingredients = ingredients;
 	}
 	
-	public void setIngredients(ArrayList<Ingredient> ingredients)
+	public void setIngredients(HashMap<Ingredient, Double> ingredients)
 	{
 		this.ingredients = ingredients;
 	}
 	
 	public void addIngredient(Ingredient ingredient)
 	{
-		ingredients.add(ingredient);
+		ingredients.put(ingredient, 0.0);
 		//write to file//
 	}
 	
-	public ArrayList<Ingredient> getIngredients()
+	public void addIngredient(Ingredient ingredient, double quantity) {
+		ingredients.put(ingredient, quantity);
+	}
+	
+	public HashMap<Ingredient, Double> getIngredients()
 	{
 		return ingredients;
 	}
 	
-	public double getIngredientQuantity(Ingredient ingredient)
+	public Double getIngredientQuantity(Ingredient ingredient)
 	{
-		return ingredient.getCapacity();
+		return ingredients.get(ingredient);
 	}
 	
-	public void setIngredientQuantity(Ingredient ingredient, double quantity) 
+	public void setIngredientQuantity(Ingredient ingredient, Double quantity) 
 	{
-		ingredient.setCapacity(ingredient.getCapacity() - quantity);
+		ingredients.replace(ingredient, ingredients.get(ingredient), quantity);
 	}
 	
+	public void createStorageOrder(HashMap<Ingredient, Double> ingredients) 
+	{
+		 Iterator<Entry<Ingredient, Double>> it = ingredients.entrySet().iterator();
+		 while (it.hasNext()) {
+				Map.Entry<Ingredient, Double> pair = (Map.Entry<Ingredient, Double>)it.next();
+		        setIngredientQuantity(pair.getKey(), this.ingredients.get(pair.getKey()) - pair.getValue());
+		 }
+	}
 }
