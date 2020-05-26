@@ -18,14 +18,13 @@ public class Server {
             this.server = new ServerSocket(port);
             this.clients = new ArrayList<>();
             
-            if(port == 5000)
-            	
+            if(port == RMS_PORT)
             	AppFrame.addToServerlog("RMS Server started on port " + port);
-            else if(port == 5001) 
+            else if(port == HRMS_PORT) 
             	AppFrame.addToServerlog("HRMS Server started on port " + port);
-            else if(port == 5002)
+            else if(port == EMS_PORT)
             	AppFrame.addToServerlog("EMS Server started on port " + port);
-            else if(port == 5003)
+            else if(port == REMS_PORT)
             	AppFrame.addToServerlog("REMS Server started on port " + port);
             else
             	AppFrame.addToServerlog("Server started on port " + port);
