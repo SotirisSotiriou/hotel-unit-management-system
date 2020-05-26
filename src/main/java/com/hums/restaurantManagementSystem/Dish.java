@@ -47,5 +47,15 @@ public class Dish {
 		}
 	}
 	
+	public boolean equals(Object obj) {
+		//overlap
+		boolean flag = false;
+		
+		if (name.equals(((Dish)obj).name)) {
+			flag = true;
+		}
+		return flag;
+	}
+	
 	
 }

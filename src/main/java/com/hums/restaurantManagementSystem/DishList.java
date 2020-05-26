@@ -22,8 +22,22 @@ public class DishList {
 	}
 	
 	public void addDish(Dish dish)
-	{
-		dishes.add(dish);
+	{	//searches for the new "dish" in  the "dishes" ArrayList
+		//if it finds it, replaces the old dish with the new version of itself
+		//if it doesn't find it, the new dish is added in the end of the ArrayList
+		int flag = 0;
+		
+		for (int i=0;i<dishes.size();i++) {
+			if (dishes.get(i).equals(dish)) {
+				dishes.remove(i);
+				dishes.add(i, dish);
+				flag = 1;
+				break;
+			}
+		}
+		if (flag==0) {
+			dishes.add(dish);
+		}
 		//write to file//
 	}
 	
