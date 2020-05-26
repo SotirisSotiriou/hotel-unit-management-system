@@ -69,7 +69,10 @@ public class DishList {
 	}
 	
 	public ArrayList<Dish> getTodayMenu(int day){
-		//
+		//scans the ArrayList dishes and checks the array menu of class Dish
+		//if the position menu[day] is equal to 1 adds the dish to the  ArrayList<dish> todayMenu
+		//return todayMenu
+		//NOTE: the value of the day parameter needs to be from 0 to 6
 		ArrayList<Dish> todayMenu = new ArrayList<Dish>();
 		int dishChecker;
 		
