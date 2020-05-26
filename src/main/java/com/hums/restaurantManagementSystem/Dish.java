@@ -6,16 +6,14 @@ import java.util.HashMap;
 public class Dish {
 	
 	private String name;
-	private int menu[];
+	private int[] menu;
 	public HashMap<Ingredient, Double> ingredients;
 	
 	public Dish(String name_, HashMap<Ingredient, Double> ingredients_)
 	{
 		this.name = name_;
 		this.ingredients = ingredients_;
-		for (int i=0;i<7;i++) {
-			menu[i]=0;
-		}
+		menu = new int[7];
 	}
 	
 	public String getName() {

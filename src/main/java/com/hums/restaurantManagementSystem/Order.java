@@ -1,15 +1,14 @@
 package com.hums.restaurantManagementSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Order {
 	
-	private ArrayList<Dish> order = new ArrayList();
+	private ArrayList<Dish> order = new ArrayList<>();
 	
 	public Order(ArrayList<Dish> order)
 	{
-		this.order = order;
+		this.setOrder(order);
 	}
 	
 	public void updateStorage(ArrayList<Dish> order, Storage s)
@@ -21,6 +20,14 @@ public class Order {
 				s.setIngredientQuantity(k,order.get(i).ingredients.get(k));
 			}
 		}
+	}
+
+	public ArrayList<Dish> getOrder() {
+		return order;
+	}
+
+	public void setOrder(ArrayList<Dish> order) {
+		this.order = order;
 	}
 
 }

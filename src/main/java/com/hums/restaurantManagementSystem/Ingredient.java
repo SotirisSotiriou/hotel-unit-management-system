@@ -5,25 +5,13 @@ public class Ingredient {
 	private String name;
 	private double max_capacity;
 	private double min_capacity;
-	private double quantity;
-	
 	
 
 	public Ingredient(String name, double max_capacity, double min_capacity)
 	{
 		this.name = name;
-		this.quantity = 0;
 		this.max_capacity = max_capacity;
 		this.min_capacity = min_capacity;
-	}
-	
-	public double getCapacity() {
-		return quantity; //***//
-	}
-	
-	public void setCapacity(double capacity) {
-		this.quantity = capacity;
-		//write to file//
 	}
 
 	public String getName() {

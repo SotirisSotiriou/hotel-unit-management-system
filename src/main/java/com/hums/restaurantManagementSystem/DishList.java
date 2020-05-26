@@ -6,9 +6,9 @@ public class DishList {
 	
 	private ArrayList<Dish> dishes = new ArrayList<Dish>();
 	
-	public DishList(ArrayList<Dish> dishes)
+	public DishList()
 	{
-		this.dishes = dishes ;
+		dishes = new ArrayList<Dish>();
 	}
 	
 	public void setDishes(ArrayList<Dish> dishes)
@@ -40,7 +40,20 @@ public class DishList {
 	}
 	
 	public void changeDishMenu(String dishname, ArrayList<Integer> dailyMenu) {
+		//this method finds the dish "dishname" and changes its menu by calling the method changeMenu of class Dish
+		//it works for the first plate it finds with the name "dishname", if there is another dish with the same name it doesn't get  updated
+		int flag=0;
 		
+		for(int i=0;i<dishes.size();i++) {
+			if (dishname.equals(dishes.get(i).getName())){
+				dishes.get(i).changeMenu(dailyMenu);
+				flag=1;
+				break;
+			}
+		}
+		if (flag==0) {
+			System.out.println("ERROR! The dish wasn't found...");
+		}
 	}
 	
 	public ArrayList<int[]> getDishMenu() {
@@ -53,5 +66,24 @@ public class DishList {
 			dishMenu.add(menuMat);
 		}
 		return dishMenu;
+	}
+	
+	public ArrayList<Dish> getTodayMenu(int day){
+		//
+		ArrayList<Dish> todayMenu = new ArrayList<Dish>();
+		int dishChecker;
+		
+		if (day>6 || day<0) {
+			System.out.println("ERROR! Not valid day value. Check the input.");
+			return null;
+		}
+		
+		for (int i=0;i<dishes.size();i++) {
+			dishChecker=dishes.get(i).getMenu()[day];
+			if (dishChecker==1) {
+				todayMenu.add(dishes.get(i));
+			}
+		}
+		return todayMenu;
 	}
 }
