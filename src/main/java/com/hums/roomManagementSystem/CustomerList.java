@@ -3,7 +3,11 @@ package com.hums.roomManagementSystem;
 import java.util.ArrayList;
 
 
+
+
+
 public class CustomerList{
+	private int nextID =0;
 	private ArrayList<Customer> customers;
 	
 	public CustomerList(ArrayList<Customer> customers) {
@@ -22,8 +26,12 @@ public class CustomerList{
 		this.customers = customers;
 	}
 	
-	public void addCustomer(Customer customer) {
+	public boolean addCustomer(Customer customer) {
+		
+		nextID++;
 		this.customers.add(customer);
+		customer.setId(nextID);
+		return true;
 	}
 	
 	public Customer searchCustomerByName(String lastname, String firstname) {
