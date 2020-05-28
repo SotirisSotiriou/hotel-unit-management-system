@@ -89,4 +89,15 @@ public class CustomerList{
 	public boolean customerExists(Customer customer) {
 		return this.customers.contains(customer);
 	}
+	
+	public void removeCustomerByID(int id) {
+		
+		for (int i = 0; i < customers.size(); i++) {
+			
+			if (customers.get(i).getId()==id)
+				customers.remove(i);
+			
+		}
+		
+	}
 }
