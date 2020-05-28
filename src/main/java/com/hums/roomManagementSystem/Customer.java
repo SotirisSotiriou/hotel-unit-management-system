@@ -75,7 +75,7 @@ public class Customer {
 	
 	
 	public String toString() {
-		return "Customer: "+ id + lastname + ", " + firstname + ", " + phone + ", " + "First Reservation: " + firstReservationDate.getDayOfMonth() + "/" + firstReservationDate.getMonthValue() + "/" + firstReservationDate.getYear();
+		return id+"."+lastname+" "+firstname+" "+phone;
 	}
 	
 }

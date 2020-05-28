@@ -100,4 +100,17 @@ public class CustomerList{
 		}
 		
 	}
+	
+	public Customer getCustomerByToString(String string) {
+		
+		for(int i = 0; i < customers.size(); i++) {
+			
+			if (customers.get(i).toString().equals(string))
+				return customers.get(i);
+			
+		}
+		
+		return null;
+	}
+	
 }
