@@ -2,30 +2,68 @@ package com.hums.roomManagementSystem;
 
 import java.time.LocalDate;
 
-import com.hums.Condition;
-
 public class RoomReservation {
+	
 	private int id;
-	private LocalDate checkIN;
-	private LocalDate checkOUT;
-	private boolean isBilled;
-	private int mealsPerDay;
-	private EndReasonType endReason;
-	private Condition condition;
+	//Customers of the reservation
 	private Customer customer;
 	
-	private static int nextID = 0;
+	//Check In and Check Out date
+	private LocalDate checkInDate;
+	private LocalDate checkOutDate;
 	
-	public RoomReservation(LocalDate checkIN, LocalDate checkOUT, int mealsPerDay, Customer customer) {
-		this.id = nextID;
-		nextID++;
-		this.checkIN = checkIN;
-		this.checkOUT = checkOUT;
-		this.mealsPerDay = mealsPerDay;
-		this.isBilled = false;
-		this.endReason = EndReasonType.NOT_ENDED;
-		this.condition = Condition.FUTURE;
+	//Room of reservation
+	private Room room;
+	
+	//if Reservation is active, finished/canceled, billed
+	private boolean billed;
+	public enum endReasonType{
+		FINISHED,
+		CANCELED
+	}
+	private endReasonType endReason;
+	
+	//Note in case it's needed
+	private String notes;
+	
+	/*
+	private boolean breakfast;
+	private boolean launch;
+	private boolean dinner;
+	*/
+	
+	
+	private int reservationCost;
+	
+	
+
+	public RoomReservation(Customer customer, LocalDate checkInDate, LocalDate checkOutDate, Room room, boolean breakfast, boolean launch, boolean dinner) {
+		super();
 		this.customer = customer;
+		this.checkInDate = checkInDate;
+		this.checkOutDate = checkOutDate;
+		this.room = room;
+		
+		/*
+		this.breakfast = breakfast;
+		this.launch = launch;
+		this.dinner = dinner;
+		*/
+		
+		//this.notes = notes;
+		
+		if (customer.getFirstReservationDate()==null)
+			customer.setFirstReservationDate(checkInDate);
+		
+	}
+	
+	
+	//getters and setters
+	
+	
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	public int getId() {
@@ -36,84 +74,72 @@ public class RoomReservation {
 		this.id = id;
 	}
 
-	public LocalDate getCheckIN() {
-		return checkIN;
-	}
-
-	public void setCheckIN(LocalDate checkIN) {
-		this.checkIN = checkIN;
-	}
-
-	public LocalDate getCheckOUT() {
-		return checkOUT;
-	}
-
-	public void setCheckOUT(LocalDate checkOUT) {
-		this.checkOUT = checkOUT;
-	}
-
-	public boolean isBilled() {
-		return isBilled;
-	}
-
-	public void setBilled(boolean isBilled) {
-		this.isBilled = isBilled;
-	}
-
-	public int getMealsPerDay() {
-		return mealsPerDay;
-	}
-
-	public void setMealsPerDay(int mealsPerDay) {
-		this.mealsPerDay = mealsPerDay;
-	}
-
-	public EndReasonType getEndReason() {
-		return endReason;
-	}
-
-	public void setEndReason(EndReasonType endReason) {
-		this.endReason = endReason;
-	}
-
-	public Condition getCondition() {
-		return condition;
-	}
-
-	public void setCondition(Condition condition) {
-		this.condition = condition;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
-	public static int getNextID() {
-		return nextID;
+	public LocalDate getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(LocalDate checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
+	public LocalDate getCheckOutDate() {
+		return checkOutDate;
+	}
+
+	public void setCheckOutDate(LocalDate checkOutDate) {
+		this.checkOutDate = checkOutDate;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public boolean isBilled() {
+		return billed;
+	}
+
+	public void setBilled(boolean billed) {
+		this.billed = billed;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public endReasonType getEndReason() {
+		return endReason;
+	}
+
+	public void setEndReason(endReasonType endReason) {
+		this.endReason = endReason;
+	}
+
+	public int getReservationCost() {
+		return reservationCost;
+	}
+
+	public void setReservationCost(int reservationCost) {
+		this.reservationCost = reservationCost;
 	}
 	
-	public boolean checkDate(LocalDate checkIN, LocalDate checkOUT) {
-		boolean check = true;
-		
-		if( (checkIN.isAfter(this.checkIN) && checkIN.isBefore(this.checkOUT)) 
-			|| (checkOUT.isAfter(this.checkIN) && checkOUT.isBefore(this.checkOUT)) 
-			|| checkIN.isEqual(this.checkIN) || checkOUT.isEqual(this.checkOUT) ) {
-			
-			check = false;
-		}
-		
-		return check;
-	}
 	
-	public String toString() {
-		return "Room Reservation: " + this.id + ", " + "Chech in: " + this.checkIN.getDayOfMonth()
-				+ "/" + this.checkIN.getMonthValue() + "/" + this.checkIN.getYear() + ", "
-				+ "Check out: " + this.checkOUT.getDayOfMonth() + "/" + this.checkOUT.getMonthValue()
-				+ "/" + this.checkOUT.getYear() + ", " + "Meals: " + this.mealsPerDay + "\n"
-				+ this.customer.toString();
-	}
+	
+	
+	
+	
+	
+	
 }
+
