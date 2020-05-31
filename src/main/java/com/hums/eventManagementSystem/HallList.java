@@ -40,5 +40,17 @@ private static final long serialVersionUID = 1L;
 		
 	}
 	
+	public Hall getHallByCode(int code) {
+		
+		
+		for (Hall hall : halls) {
+			if(hall.getCode() == code) {
+				return hall;
+			}
+		}
+		
+		return null;
+	}
+	
 	
 }
