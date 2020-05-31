@@ -28,7 +28,17 @@ private static final long serialVersionUID = 1L;
 
 	}
 	
-	
+	public void deleteHallByCode(int code) {
+		
+		
+		for (int i = 0; i < halls.size(); i++) {
+			
+			if (halls.get(i).getCode()==code)
+				halls.remove(i);
+			
+		}
+		
+	}
 	
 	
 }
