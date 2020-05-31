@@ -53,6 +53,18 @@ public class RoomList {
 		this.vipCost = vipCost;
 	}
 	
+	public void deleteRoomByNumber(int number) {
+		
+		
+		for (int i = 0; i < rooms.size(); i++) {
+			
+			if (rooms.get(i).getRoomNumber()==number)
+				rooms.remove(i);
+			
+		}
+		
+	}
+	
 	
 	
 	/*public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
