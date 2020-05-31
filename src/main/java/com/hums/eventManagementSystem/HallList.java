@@ -1,6 +1,7 @@
 package com.hums.eventManagementSystem;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -89,6 +90,43 @@ private static final long serialVersionUID = 1L;
 			return resForSerHall;
 			
 		}
+	}
+	
+	public Hall getAvailableHall(LocalDateTime startTime, LocalDateTime endTime, int capacity) {
+		
+		Hall availableHall = null;
+		for (Hall hall : halls) {
+			
+			if(hall.getCapacity() >= capacity) {
+				
+				ArrayList<EventReservation> eventsByHall = this.getReservationsByHall(hall.getCode());
+				
+				if(eventsByHall.size()==0){
+					return hall;
+				}
+				
+				for (EventReservation eventReservation : eventsByHall) {
+						
+	
+					if( ( startTime.isAfter(eventReservation.getStartTime()) && startTime.isBefore(eventReservation.getEndTime()) )
+						|| ( endTime.isAfter(eventReservation.getStartTime()) && endTime.isBefore(eventReservation.getEndTime()) )
+						|| (startTime.isEqual(eventReservation.getStartTime()) || endTime.isEqual(eventReservation.getEndTime())
+							|| startTime.isEqual(eventReservation.getEndTime()) || endTime.isEqual(eventReservation.getStartTime())))
+						  {
+							availableHall=null;
+							break;
+					}else {
+						availableHall=hall;
+					}
+					
+											
+				}
+					
+			}
+			
+		}
+		
+		return availableHall;
 	}
 	
 }
