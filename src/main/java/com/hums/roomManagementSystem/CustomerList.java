@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 
 
-
-
 public class CustomerList{
 	private int nextID =0;
 	private ArrayList<Customer> customers;
@@ -34,17 +32,17 @@ public class CustomerList{
 		return true;
 	}
 	
-	public Customer searchCustomerByName(String lastname, String firstname) {
-		Customer foundCustomer = null;
+	public ArrayList<Customer> getCustomersByTerm(String term) {
+		
+		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
 		
 		for(Customer customer : this.customers) {
-			if(customer.getLastname().equals(lastname) && customer.getFirstname().equals(firstname)) {
-				foundCustomer = customer;
-				break;
+			if( customer.getFirstname().contains(term) || customer.getLastname().contains(term) || customer.getPhone().contains(term) ) {
+				foundCustomers.add(customer);
 			}
 		}
 		
-		return foundCustomer;
+		return foundCustomers;
 	}
 	
 	
