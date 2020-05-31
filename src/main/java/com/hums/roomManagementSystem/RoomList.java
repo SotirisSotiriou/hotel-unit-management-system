@@ -5,7 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RoomList {
+	
+	
 	private ArrayList<Room> rooms;
+	private int regularCost=30;
+	private int penthouseCost=80;
+	private int vipCost=60;
 	
 	public RoomList(ArrayList<Room> rooms) {
 		this.rooms = rooms;
@@ -21,6 +26,31 @@ public class RoomList {
 
 	public void setRooms(ArrayList<Room> rooms) {
 		this.rooms = rooms;
+	}
+	
+	
+	public int getRegularCost() {
+		return regularCost;
+	}
+
+	public void setRegularCost(int regularCost) {
+		this.regularCost = regularCost;
+	}
+
+	public int getPenthouseCost() {
+		return penthouseCost;
+	}
+
+	public void setPenthouseCost(int penthouseCost) {
+		this.penthouseCost = penthouseCost;
+	}
+
+	public int getVipCost() {
+		return vipCost;
+	}
+
+	public void setVipCost(int vipCost) {
+		this.vipCost = vipCost;
 	}
 	
 	
