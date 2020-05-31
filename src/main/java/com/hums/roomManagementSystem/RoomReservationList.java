@@ -3,8 +3,12 @@ package com.hums.roomManagementSystem;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class RoomReservationList {
+	
 	private ArrayList<RoomReservation> reservations;
+	
+	private int nextID;
 	
 	public RoomReservationList(ArrayList<RoomReservation> reservations) {
 		this.reservations = reservations;
@@ -24,6 +28,9 @@ public class RoomReservationList {
 	
 	
 	public void addReservation(RoomReservation reservation) {
+		nextID++;
+		
+		reservation.setId(nextID);
 		this.reservations.add(reservation);
 	}
 	
