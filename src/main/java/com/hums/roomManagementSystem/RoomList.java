@@ -1,9 +1,9 @@
 package com.hums.roomManagementSystem;
 
-import java.time.LocalDate;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 
 
 public class RoomList {
@@ -80,7 +80,40 @@ public class RoomList {
 		
 	}
 	
-	
+	public  ArrayList<RoomReservation> getReservationsByRoom(int roomNumber, RoomReservationList rrl)
+	{
+		Room room=null;
+		
+		for(Room r:rooms)
+		{
+			if(r.getRoomNumber() == roomNumber)
+			{
+				room=r;
+			}
+		}
+		if(room==null)
+		{
+			JOptionPane.showMessageDialog(null, "Error finding Room", "Warning",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+		else
+		{
+			ArrayList<RoomReservation> reservationsList=rrl.getReservations();
+			
+			ArrayList<RoomReservation> resForSerRoom=new ArrayList<RoomReservation>();
+			
+			for(RoomReservation roomReservation: reservationsList)
+			{
+				if(roomReservation.getRoom()==room)
+				{
+					resForSerRoom.add(roomReservation);
+				}
+			}
+			
+			return resForSerRoom;
+			
+		}
+	}
 	
 	/*public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
 		ArrayList<Room> availableRooms = new ArrayList<>();
