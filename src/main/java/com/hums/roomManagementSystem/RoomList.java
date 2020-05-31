@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 
+
+
 public class RoomList {
 	
 	
@@ -62,6 +64,19 @@ public class RoomList {
 				rooms.remove(i);
 			
 		}
+		
+	}
+	
+	public Room getRoomByNumber(int number) {
+		
+		
+		for (int i = 0; i < rooms.size(); i++) {
+			
+			if (rooms.get(i).getRoomNumber()==number)
+				return rooms.get(i);
+			
+		}
+		return null;
 		
 	}
 	
