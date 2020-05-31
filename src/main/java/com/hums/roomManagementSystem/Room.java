@@ -1,80 +1,90 @@
 package com.hums.roomManagementSystem;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public abstract class Room {
-	private int number;
-	private int floor;
-	private int capacity;
-	private double costPerDay;
-	private ArrayList<RoomFeature> features;
+public abstract class Room implements Serializable{
 	
-	public Room(int number, int floor, int capacity, ArrayList<RoomFeature> features) {
-		this.number = number;
+	
+
+
+	protected int roomNumber;
+	private int floor;
+	private int beds;
+
+	private int costPerDay;
+	
+	
+
+	public Room(int number, int floor, int bedsCapacity) {
+		super();
+		this.roomNumber = number;
 		this.floor = floor;
-		this.capacity = capacity;
+		this.beds = bedsCapacity;
+		
+	}
+	
+	
+	//Getters and Setters
+	
+	public String getType() {
+		return null;
+	}
+	
+
+	public int getCostPerDay() {
+		return costPerDay;
+	}
+	
+	public void setCostPerDay(int costPerBed) {
+		
+		this.costPerDay = costPerBed * beds;
+		
 	}
 
-	public int getNumber() {
-		return number;
+
+	public int getRoomNumber() {
+		return roomNumber;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
 
 	public int getFloor() {
 		return floor;
 	}
 
-	public void setFloor(int floor) {
-		this.floor = floor;
-	}
 
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
-	public double getCostPerDay() {
-		return costPerDay;
-	}
-
-	public void setCostPerDay(double costPerDay) {
-		this.costPerDay = costPerDay;
+	public int getBedsCapacity() {
+		return beds;
 	}
 	
-	public ArrayList<RoomFeature> getFeatures() {
-		return features;
+	
+	public void setBeds(int beds) {
+		this.beds = beds;
 	}
 
-	public void setFeatures(ArrayList<RoomFeature> features) {
-		this.features = features;
-	}
-	
-	public boolean checkRoomFeatures(ArrayList<RoomFeature> wantedFeatures){
-		for(RoomFeature f : wantedFeatures) {
-			if(!this.getFeatures().contains(f)) 
-				return false;
-		}
-		return true;
-	}
-	
-	public boolean checkRoomAvailability(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations) {
-		boolean available = true;
-		for(RoomReservation rr : reservations) {
-			//if wanted check in or check out date is between another reservation check in and check out
-			if((checkIN.isAfter(rr.getCheckIN()) && checkIN.isBefore(rr.getCheckOUT())) ||
-				checkOUT.isAfter(rr.getCheckIN()) && checkOUT.isBefore(rr.getCheckOUT())) {
-				available = false;
-			}
-		}
-		return available;
+
+	public String toString() {
+		
+		return null;
+		
 	}
 
-	public abstract double calculateCostPerDay();
+	
+
+
+	
+
+
+	
+
+
+	
+
+
+	
+
+
+	
+		
+		
 }
+	

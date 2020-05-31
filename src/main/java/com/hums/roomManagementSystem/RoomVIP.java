@@ -1,25 +1,24 @@
 package com.hums.roomManagementSystem;
 
-import java.util.ArrayList;
 
-public class RoomVIP extends Room {
-	private static double costPerBed = 100;
+
+
+public class RoomVIP extends Room{
+
 	
-	public RoomVIP(int number, int floor, int capacity, ArrayList<RoomFeature> features) {
-		super(number, floor, capacity, features);
-	}
-
-	@Override
-	public double calculateCostPerDay() {
-		return costPerBed * this.getCapacity();
+	public RoomVIP(int number, int floor, int bedsCapacity) {
+		super(number, floor, bedsCapacity);
 	}
 	
-	public static double getCostPerBed() {
-		return costPerBed;
+	public String toString() {
+		
+		if(this.getBedsCapacity()==1) {
+			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Single, VIP";
+		}else if (this.getBedsCapacity()==2){
+			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Double, VIP";
+		}else {
+			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Triple, VIP";
+		}
+		
 	}
-	
-	public static void setCostPerBed(double cost) {
-		costPerBed = cost;
-	}
-
 }

@@ -1,6 +1,7 @@
 package com.hums.roomManagementSystem;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 public class RoomList {
@@ -24,7 +25,7 @@ public class RoomList {
 	
 	
 	
-	public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
+	/*public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
 		ArrayList<Room> availableRooms = new ArrayList<>();
 		for(Room room : this.rooms) {
 			boolean available = room.checkRoomAvailability(checkIN, checkOUT, reservations);
@@ -45,4 +46,5 @@ public class RoomList {
 		}
 		return roomsWithFeatures;
 	}
+	*/
 }
