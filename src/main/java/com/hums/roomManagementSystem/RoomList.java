@@ -1,6 +1,7 @@
 package com.hums.roomManagementSystem;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -113,6 +114,77 @@ public class RoomList {
 			return resForSerRoom;
 			
 		}
+	}
+	
+	public ArrayList<Room> getAvailableRooms(LocalDate checkIn, LocalDate checkOut, int beds, int type, RoomReservationList rrl) {
+		
+		ArrayList<Room> filteredRooms = new ArrayList<Room>();
+		
+		for (Room room : rooms) {
+			
+			if(type==1) {
+				
+				if(room.getType().equals("Regular")) 
+					filteredRooms.add(room);
+			}
+			
+			else if(type==2) {
+				
+				if (room.getType().equals("Penthouse")) 
+					filteredRooms.add(room);
+			}
+			
+			else {
+				
+				if (room.getType().equals("VIP")) 
+					filteredRooms.add(room);
+				
+			}
+			
+		}
+		
+		if(filteredRooms.size()==0)
+			return null;
+		
+		ArrayList<Room> availableRooms = new ArrayList<Room>();
+		
+		for (Room room : filteredRooms) {
+			
+			if(room.getBedsCapacity() == beds) {
+				
+				ArrayList<RoomReservation> reservationsByRoom = this.getReservationsByRoom(room.getRoomNumber(), rrl);
+				
+				if(reservationsByRoom.size()==0){
+					availableRooms.add(room);
+				}else {
+					
+					for (RoomReservation roomReservation : reservationsByRoom) {
+						
+						
+						if( ( checkIn.isAfter(roomReservation.getCheckInDate()) && checkIn.isBefore(roomReservation.getCheckInDate()) )
+							|| ( checkOut.isAfter(roomReservation.getCheckInDate()) && checkOut.isBefore(roomReservation.getCheckOutDate()) )
+							|| (checkIn.isBefore(roomReservation.getCheckInDate()) && checkOut.isAfter(roomReservation.getCheckInDate()))
+							|| (checkIn.isEqual(roomReservation.getCheckInDate()) || checkOut.isEqual(roomReservation.getCheckOutDate())
+								|| checkIn.isEqual(roomReservation.getCheckOutDate()) || checkOut.isEqual(roomReservation.getCheckInDate())))
+							  {
+								break;
+						}else {
+							availableRooms.add(room);
+							break;
+						}
+						
+												
+					}
+					
+				}
+				
+				
+					
+			}
+			
+		}
+		
+		return availableRooms;
 	}
 	
 	/*public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){
