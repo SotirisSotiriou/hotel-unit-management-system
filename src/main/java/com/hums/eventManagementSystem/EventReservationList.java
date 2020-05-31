@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class EventReservationList implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	
 	private ArrayList<EventReservation> reservations=new ArrayList<EventReservation>();
 	
@@ -28,5 +27,16 @@ public class EventReservationList implements Serializable {
 		}
 		
 		return null;
+	}
+	
+	public void deleteReservationByID(int id) {
+		
+		for (int i = 0; i < reservations.size(); i++) {
+			
+			if (reservations.get(i).getId()==id)
+				reservations.remove(i);
+			
+		}
+		
 	}
 }
