@@ -49,5 +49,33 @@ public class RoomReservationList {
 		}
 	}
 	
+	public ArrayList<RoomReservation> getReservationsByCustomerTerm(String term){
+		
+		ArrayList<RoomReservation> reservationsByCustomersWithTerm = new ArrayList<RoomReservation>();
+		
+		ArrayList<Customer> customersWithTerm = RMS_Registry.getInstance().getCustomerList().getCustomersByTerm(term);
+		
+		
+		for (RoomReservation roomReservation : reservations) {
+			
+			
+			for (Customer customer : customersWithTerm) {
+				
+				if(roomReservation.getCustomer().equals(customer)) {
+					
+					reservationsByCustomersWithTerm.add(roomReservation);
+					
+				}
+				
+				
+			}
+			
+			
+		}
+		
+		
+		return reservationsByCustomersWithTerm;
+	}
+	
 	
 }
