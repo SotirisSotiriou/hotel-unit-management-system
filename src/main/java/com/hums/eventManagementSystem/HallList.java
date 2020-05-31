@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JOptionPane;
+
 
 public class HallList implements Serializable{
 	
@@ -52,5 +54,41 @@ private static final long serialVersionUID = 1L;
 		return null;
 	}
 	
+	public  ArrayList<EventReservation> getReservationsByHall(int code)
+	{
+		
+		EventReservationList erl = EMS_Registry.getInstance().getEventReservationList();
+		Hall hall=null;
+		
+		for(Hall h:halls)
+		{
+			if(code==h.getCode())
+			{
+				hall=h;
+			}
+		}
+		if(hall==null)
+		{
+			JOptionPane.showMessageDialog(null, "Error finding Hall", "Warning",JOptionPane.WARNING_MESSAGE);
+			return null;
+		}
+		else
+		{
+			ArrayList<EventReservation> list=erl.getReservations();
+			
+			ArrayList<EventReservation> resForSerHall=new ArrayList<EventReservation>();
+			
+			for(EventReservation e:list)
+			{
+				if(e.getHall()==hall && (e.getCondition()==Condition.FUTURE || e.getCondition()==Condition.PRESENT))
+				{
+					resForSerHall.add(e);
+				}
+			}
+			
+			return resForSerHall;
+			
+		}
+	}
 	
 }
