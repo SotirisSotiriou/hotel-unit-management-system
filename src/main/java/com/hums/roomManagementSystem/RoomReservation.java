@@ -2,6 +2,7 @@ package com.hums.roomManagementSystem;
 
 import java.time.LocalDate;
 
+
 public class RoomReservation {
 	
 	private int id;
@@ -26,11 +27,11 @@ public class RoomReservation {
 	//Note in case it's needed
 	private String notes;
 	
-	/*
+	
 	private boolean breakfast;
 	private boolean launch;
 	private boolean dinner;
-	*/
+	
 	
 	
 	private int reservationCost;
@@ -44,17 +45,42 @@ public class RoomReservation {
 		this.checkOutDate = checkOutDate;
 		this.room = room;
 		
-		/*
+		
 		this.breakfast = breakfast;
 		this.launch = launch;
 		this.dinner = dinner;
-		*/
+		
 		
 		//this.notes = notes;
 		
 		if (customer.getFirstReservationDate()==null)
 			customer.setFirstReservationDate(checkInDate);
 		
+		calculateReservationCost();
+	}
+	
+	public void calculateReservationCost() {
+		
+		long daysStayed = java.time.temporal.ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+		
+		double roomCost = room.getCostPerDay();
+		
+		double mealsCost = 0;
+		if(room.getClass().equals(RoomRegular.class)) {
+			
+			if(breakfast) {
+				mealsCost += RMS_Registry.getInstance().getBreakfastCost();
+			}
+			if(launch) {
+				mealsCost += RMS_Registry.getInstance().getLaunchCost();
+			}
+			if(dinner) {
+				mealsCost += RMS_Registry.getInstance().getDinnerCost();
+			}
+			
+		}
+		
+		this.reservationCost = (int) ((int) (roomCost * daysStayed) + (mealsCost * daysStayed));
 	}
 	
 	
