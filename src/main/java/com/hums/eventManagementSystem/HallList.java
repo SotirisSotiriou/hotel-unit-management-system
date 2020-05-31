@@ -129,4 +129,21 @@ private static final long serialVersionUID = 1L;
 		return availableHall;
 	}
 	
+	public ArrayList<Hall> getReservedHalls(){
+		
+		ArrayList<Hall> reservedHalls = new ArrayList<>();
+		
+		ArrayList<EventReservation> reservations = EMS_Registry.getInstance().getEventReservationList().getReservations();
+		
+		for (EventReservation res : reservations) {
+			
+			if(res.getCondition()==Condition.PRESENT) {
+				reservedHalls.add(res.getHall());
+			}
+			
+		}
+		
+		return reservedHalls;
+	}
+	
 }
