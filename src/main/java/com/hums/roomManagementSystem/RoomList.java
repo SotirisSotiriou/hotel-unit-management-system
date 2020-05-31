@@ -56,6 +56,35 @@ public class RoomList {
 		this.vipCost = vipCost;
 	}
 	
+	public void addRoom(Room aRoom) {
+		
+		boolean alreadyExists = false;
+		
+		for (Room room : rooms) {
+			if(room.getRoomNumber() == aRoom.getRoomNumber()) {
+				alreadyExists = true;
+				JOptionPane.showMessageDialog(null, "Room with this number already exists!","Warning",JOptionPane.WARNING_MESSAGE);
+				break;
+			}
+		}
+		
+		if(alreadyExists == false) {
+			rooms.add(aRoom);
+			
+			if(aRoom.getClass().equals(RoomRegular.class))
+				aRoom.setCostPerDay(regularCost);
+			else if(aRoom.getClass().equals(RoomPenthouse.class))
+				aRoom.setCostPerDay(penthouseCost);
+			else
+				aRoom.setCostPerDay(vipCost);
+			
+			JOptionPane.showMessageDialog(null, "New room created successfully");
+			
+		}
+		
+			
+	}
+	
 	public void deleteRoomByNumber(int number) {
 		
 		
