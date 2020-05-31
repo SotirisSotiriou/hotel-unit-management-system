@@ -32,5 +32,15 @@ public class RoomReservationList {
 		reservation.setEndReason(RoomReservation.endReasonType.CANCELED);
 	}
 	
+	public void deleteReservationByID(int id) {
+		
+		for (int i = 0; i < reservations.size(); i++) {
+			
+			if (reservations.get(i).getId()==id)
+				reservations.remove(i);
+			
+		}
+	}
+	
 	
 }
