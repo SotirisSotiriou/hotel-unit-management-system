@@ -18,6 +18,34 @@ public class RMS_Registry implements Serializable{
 	private CustomerList customerList;
 	private RoomReservationList reservationList;
 	
+	private double breakfastCost=0;
+	private double launchCost=0;
+	private double dinnerCost=0;
+	
+
+	public double getBreakfastCost() {
+		return breakfastCost;
+	}
+
+	public void setBreakfastCost(double breakfastCost) {
+		this.breakfastCost = breakfastCost;
+	}
+
+	public double getLaunchCost() {
+		return launchCost;
+	}
+
+	public void setLaunchCost(double launchCost) {
+		this.launchCost = launchCost;
+	}
+
+	public double getDinnerCost() {
+		return dinnerCost;
+	}
+
+	public void setDinnerCost(double dinnerCost) {
+		this.dinnerCost = dinnerCost;
+	}
 
 	private RMS_Registry() {
 		this.roomList = new RoomList();
