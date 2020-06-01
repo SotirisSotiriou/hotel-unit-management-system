@@ -100,7 +100,16 @@ public class Server {
 							obj = ois.readObject();
 							if (!obj.equals(null)) {
 								if(client.getPort() == RMS_PORT) {
-									
+									exportToFile(rms,obj);
+								}
+								else if(client.getPort() == EMS_PORT) {
+									exportToFile(ems, obj);
+								}
+								else if(client.getPort() == REMS_PORT) {
+									exportToFile(rems, obj);
+								}
+								else if(client.getPort() == HRMS_PORT) {
+									exportToFile(hrms, obj);
 								}
 								sendToAll(obj);
 							}
@@ -143,7 +152,15 @@ public class Server {
     	}
     }
     
-    public void exportToFile(File file) {
+    public void exportToFile(File file, Object obj) {
+    	try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(obj);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
     }
 }
