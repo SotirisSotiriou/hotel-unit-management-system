@@ -44,7 +44,35 @@ public class Server {
                 			AppFrame.addToServerlog("Cient: " + " " + client.getInetAddress().getHostName() + " connected");
                 			OutputStream output = client.getOutputStream();
                 			PrintWriter writer = new PrintWriter(output, true);
-                			writer.println("You are connected");        			
+                			writer.println("You are connected");
+                			
+                			//read from file
+                			try {
+                				FileInputStream fis = null;
+                    			ObjectInputStream ois = null;
+                    			Object obj = null;
+                    			if (client.getPort() == RMS_PORT) { 
+                    				fis = new FileInputStream(new File("rms-registry.ser"));
+                    			}
+                    			else if(client.getPort() == EMS_PORT) {
+                    				fis = new FileInputStream(new File("ems-registry.ser"));
+                    			}
+                    			else if(client.getPort() == REMS_PORT) {
+                    				fis = new FileInputStream(new File("rems-registry.ser"));
+                    			}
+                    			else if(client.getPort() == HRMS_PORT) {
+                    				fis = new FileInputStream(new File("hrms-registry.ser"));
+                    			}
+                    			
+                    			if(!fis.equals(null)) { 
+                    				ois = new ObjectInputStream(fis);
+                    				obj = ois.readObject();
+                    				sendToClient(client,obj);
+                    				AppFrame.addToServerlog("Registry sent to client");
+                    			}
+                			} catch(Exception e) {
+                				e.printStackTrace();
+                			}
                 		}
                 	} catch (Exception e) {
                 		e.printStackTrace();
@@ -56,16 +84,27 @@ public class Server {
         
         Thread reader = new Thread() {
         	public void run() {
-        		InputStream input;
-        		ObjectInputStream ois;
+        		InputStream input = null;
+        		ObjectInputStream ois = null;
+        		File rms = new File("rms-registry.ser");
+        		File ems = new File("ems-regsitry.ser");
+        		File rems = new File("rems-registry.ser");
+        		File hrms = new File("hrms-regsitry.ser");
         		
         		while(true) {
+        			Object obj = null;
         			for(Socket client : clients) {
         				try {
 							input = client.getInputStream();
 							ois = new ObjectInputStream(input);
-							Object obj = ois.readObject();
-							sendToAll(obj);
+							obj = ois.readObject();
+							if (!obj.equals(null)) {
+								if(client.getPort() == RMS_PORT) {
+									
+								}
+								sendToAll(obj);
+							}
+							
 						} catch (IOException | ClassNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -102,5 +141,9 @@ public class Server {
     	else {
     		AppFrame.addToServerlog("0 Clients connected");
     	}
+    }
+    
+    public void exportToFile(File file) {
+    	
     }
 }
