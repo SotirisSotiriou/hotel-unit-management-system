@@ -1,15 +1,20 @@
 package com.hums.roomManagementSystem;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 
-public class RoomList {
+public class RoomList implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Room> rooms;
 	private int regularCost=30;
 	private int penthouseCost=80;

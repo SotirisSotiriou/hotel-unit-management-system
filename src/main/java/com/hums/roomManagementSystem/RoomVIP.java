@@ -6,6 +6,11 @@ package com.hums.roomManagementSystem;
 public class RoomVIP extends Room{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public RoomVIP(int number, int floor, int bedsCapacity) {
 		super(number, floor, bedsCapacity);
 	}

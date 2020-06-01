@@ -1,11 +1,17 @@
 package com.hums.roomManagementSystem;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class RoomReservationList {
+public class RoomReservationList implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ArrayList<RoomReservation> reservations;
 	
 	private int nextID;

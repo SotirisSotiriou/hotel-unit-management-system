@@ -1,10 +1,11 @@
 package com.hums.roomManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class CustomerList{
+public class CustomerList implements Serializable{
 	private int nextID =0;
 	private ArrayList<Customer> customers;
 	
