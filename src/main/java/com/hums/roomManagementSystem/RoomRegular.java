@@ -16,9 +16,9 @@ public class RoomRegular extends Room {
 
 	public String toString() {
 		
-		if(this.getBedsCapacity()==1) {
+		if(this.getBeds()==1) {
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Single, Regular";
-		}else if (this.getBedsCapacity()==2){
+		}else if (this.getBeds()==2){
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Double, Regular";
 		}else {
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Triple, Regular";

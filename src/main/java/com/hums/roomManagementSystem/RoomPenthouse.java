@@ -17,9 +17,9 @@ public class RoomPenthouse extends Room {
 	
 	public String toString() {
 		
-		if(this.getBedsCapacity()==1) {
+		if(this.getBeds()==1) {
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Single, Penthouse";
-		}else if (this.getBedsCapacity()==2){
+		}else if (this.getBeds()==2){
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Double, Penthouse";
 		}else {
 			return "No "+this.roomNumber+", Floor "+this.getFloor()+", Triple, Penthouse";

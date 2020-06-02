@@ -115,7 +115,7 @@ public class RoomList implements Serializable{
 		
 	}
 	
-	public  ArrayList<RoomReservation> getReservationsByRoom(int roomNumber, RoomReservationList rrl)
+	public  ArrayList<RoomReservation> getReservationsByRoom(int roomNumber)
 	{
 		Room room=null;
 		
@@ -133,7 +133,7 @@ public class RoomList implements Serializable{
 		}
 		else
 		{
-			ArrayList<RoomReservation> reservationsList=rrl.getReservations();
+			ArrayList<RoomReservation> reservationsList=RMS_Registry.getInstance().getReservationList().getReservations();
 			
 			ArrayList<RoomReservation> resForSerRoom=new ArrayList<RoomReservation>();
 			
@@ -150,7 +150,7 @@ public class RoomList implements Serializable{
 		}
 	}
 	
-	public ArrayList<Room> getAvailableRooms(LocalDate checkIn, LocalDate checkOut, int beds, int type, RoomReservationList rrl) {
+	public ArrayList<Room> getAvailableRooms(LocalDate checkIn, LocalDate checkOut, int beds, int type) {
 		
 		ArrayList<Room> filteredRooms = new ArrayList<Room>();
 		
@@ -158,25 +158,25 @@ public class RoomList implements Serializable{
 			
 			if(type==1) {
 				
-				if(room.getType().equals("Regular")) 
+				if(room.getClass().equals(RoomRegular.class)) 
 					filteredRooms.add(room);
 			}
 			
 			else if(type==2) {
 				
-				if (room.getType().equals("Penthouse")) 
+				if (room.getClass().equals(RoomPenthouse.class)) 
 					filteredRooms.add(room);
 			}
 			
 			else {
 				
-				if (room.getType().equals("VIP")) 
+				if (room.getClass().equals(RoomVIP.class)) 
 					filteredRooms.add(room);
 				
 			}
 			
 		}
-		
+		//no rooms are found for specific type
 		if(filteredRooms.size()==0)
 			return null;
 		
@@ -184,30 +184,38 @@ public class RoomList implements Serializable{
 		
 		for (Room room : filteredRooms) {
 			
-			if(room.getBedsCapacity() == beds) {
+			//for each room, check if beds match the beds you want, if they match, check it's reservations
+			
+			if(room.getBeds() == beds) {
 				
-				ArrayList<RoomReservation> reservationsByRoom = this.getReservationsByRoom(room.getRoomNumber(), rrl);
+				ArrayList<RoomReservation> reservationsByRoom = this.getReservationsByRoom(room.getRoomNumber());
 				
 				if(reservationsByRoom.size()==0){
 					availableRooms.add(room);
 				}else {
 					
+					boolean alreadyReserved = false;
+					
 					for (RoomReservation roomReservation : reservationsByRoom) {
 						
+						//Check if the check in/out we want, overlaps with a reservation of selected room
 						
 						if( ( checkIn.isAfter(roomReservation.getCheckInDate()) && checkIn.isBefore(roomReservation.getCheckInDate()) )
 							|| ( checkOut.isAfter(roomReservation.getCheckInDate()) && checkOut.isBefore(roomReservation.getCheckOutDate()) )
 							|| (checkIn.isBefore(roomReservation.getCheckInDate()) && checkOut.isAfter(roomReservation.getCheckInDate()))
-							|| (checkIn.isEqual(roomReservation.getCheckInDate()) || checkOut.isEqual(roomReservation.getCheckOutDate())
-								|| checkIn.isEqual(roomReservation.getCheckOutDate()) || checkOut.isEqual(roomReservation.getCheckInDate())))
+							|| (checkIn.isEqual(roomReservation.getCheckInDate()) || checkOut.isEqual(roomReservation.getCheckOutDate()) ))
 							  {
-								break;
-						}else {
-							availableRooms.add(room);
-							break;
+							alreadyReserved = true;
 						}
+							
+					}
+					
+					if(alreadyReserved == false) {
 						
-												
+						System.out.println("Room: "+room.getRoomNumber());
+						if(!availableRooms.contains(room))
+						availableRooms.add(room);
+						
 					}
 					
 				}

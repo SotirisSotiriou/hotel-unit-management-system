@@ -52,7 +52,7 @@ public abstract class Room implements Serializable{
 	}
 
 
-	public int getBedsCapacity() {
+	public int getBeds() {
 		return beds;
 	}
 	
