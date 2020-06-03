@@ -1,6 +1,6 @@
 package com.hums.humanResourceManagementSystem;
 
-import com.hums.Pair;
+import com.hums.tools.Pair;
 import java.util.ArrayList;
 import java.time.LocalTime;
 
