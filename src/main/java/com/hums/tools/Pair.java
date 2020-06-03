@@ -1,4 +1,4 @@
-package com.hums;
+package com.hums.tools;
 
 public class Pair<E1,E2>{
 	private E1 element1;
