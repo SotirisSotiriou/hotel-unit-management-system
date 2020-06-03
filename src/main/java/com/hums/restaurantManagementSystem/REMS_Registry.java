@@ -3,11 +3,14 @@ package com.hums.restaurantManagementSystem;
 import java.io.Serializable;
 
 public class REMS_Registry implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	private static REMS_Registry registryInstance = null;
 	
 	private REMS_Registry() {
-		
+		this.menu = new DishList();
+		this.storage = new Storage();
 	}
 
 	public static REMS_Registry getInstance() {
@@ -18,6 +21,10 @@ public class REMS_Registry implements Serializable{
 			
 			return registryInstance;
 			
+	}
+	
+	public static void resetInstance() {
+		registryInstance = new REMS_Registry();
 	}
 	
 	private Storage storage;

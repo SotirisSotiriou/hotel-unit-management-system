@@ -9,9 +9,9 @@ public class Storage {
 	
 	public HashMap<Ingredient, Double> ingredients = new HashMap<>();
 	
-	public Storage(HashMap<Ingredient, Double> ingredients)
+	public Storage()
 	{
-		this.ingredients = ingredients;
+		this.ingredients = new HashMap<>();
 	}
 	
 	public void setIngredients(HashMap<Ingredient, Double> ingredients)

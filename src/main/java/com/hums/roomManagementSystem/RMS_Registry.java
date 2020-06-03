@@ -2,17 +2,30 @@ package com.hums.roomManagementSystem;
 
 import java.io.Serializable;
 
-
 public class RMS_Registry implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 
 	private static RMS_Registry registryInstance=null;
 	
+	private RMS_Registry() {
+		this.roomList = new RoomList();
+		this.reservationList = new RoomReservationList();
+		this.customerList = new CustomerList();
+	}
+	
+	public synchronized static RMS_Registry getInstance() {
+		
+		if(registryInstance == null) {
+			registryInstance = new RMS_Registry();
+		}
+		
+		return registryInstance;
+	}
+	
+	public static void resetInstance() {
+		registryInstance = new RMS_Registry();
+	}
 	
 	private RoomList roomList;
 	private CustomerList customerList;
@@ -47,20 +60,7 @@ public class RMS_Registry implements Serializable{
 		this.dinnerCost = dinnerCost;
 	}
 
-	private RMS_Registry() {
-		this.roomList = new RoomList();
-		this.reservationList = new RoomReservationList();
-		this.customerList = new CustomerList();
-	}
 	
-	public synchronized static RMS_Registry getInstance() {
-		
-		if(registryInstance == null) {
-			registryInstance = new RMS_Registry();
-		}
-		
-		return registryInstance;
-	}
 
 	public RoomList getRoomList() {
 		return roomList;

@@ -9,7 +9,8 @@ public class EMS_Registry implements Serializable{
 	private static EMS_Registry registryInstance = null;
 	
 	private EMS_Registry() {
-		
+		this.eventReservationList = new EventReservationList();
+		this.hallList = new HallList();
 	}
 	
 	public static EMS_Registry getInstance() {
@@ -20,6 +21,10 @@ public class EMS_Registry implements Serializable{
 		
 		return registryInstance;
 		
+	}
+	
+	public static void resetInstance() {
+		registryInstance = new EMS_Registry();
 	}
 	
 	private EventReservationList eventReservationList;

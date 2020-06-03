@@ -1,20 +1,15 @@
 package com.hums.humanResourceManagementSystem;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import com.hums.eventManagementSystem.EMS_Registry;
 
 public class HRMS_Registry implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	private static HRMS_Registry registryInstance = null;
 	
 	private HRMS_Registry() {
-		
+		this.empList = new EmployeeList();
 	}
 	
 	public static HRMS_Registry getInstance() {
@@ -25,6 +20,10 @@ public class HRMS_Registry implements Serializable{
 			
 			return registryInstance;
 			
+	}
+	
+	public static void resetInstance() {
+		registryInstance = new HRMS_Registry();
 	}
 	
 	private EmployeeList empList;
