@@ -1,14 +1,29 @@
 package com.hums.restaurantManagementSystem;
 
-public class REMS_Registry {
+import java.io.Serializable;
+
+public class REMS_Registry implements Serializable{
+	
+	private static REMS_Registry registryInstance = null;
+	
+	private REMS_Registry() {
+		
+	}
+
+	public static REMS_Registry getInstance() {
+			
+			if(registryInstance == null) {
+				registryInstance = new REMS_Registry();
+			}
+			
+			return registryInstance;
+			
+	}
+	
 	private Storage storage;
 	private DishList menu;
 	
-	public REMS_Registry(Storage storage, DishList menu) {
-		this.storage = storage;
-		this.menu = menu;
-	}
-
+	
 	public Storage getStorage() {
 		return storage;
 	}
