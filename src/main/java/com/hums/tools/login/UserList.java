@@ -1,17 +1,33 @@
 package com.hums.tools.login;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserList{
-    private ArrayList<User> uList;
+public class UserList implements Serializable{
 
-    public UserList(){
-        this.uList = new ArrayList<>();
-    }
+	private static final long serialVersionUID = 1L;
+	
+	private static UserList instance = null;
+	
+	private ArrayList<User> uList;
 
-    public UserList(ArrayList<User> ulist){
-        this.uList = ulist;
-    }
+	private UserList(){
+		this.uList = new ArrayList<>();
+	}
+
+	public synchronized static UserList getInstance() {
+		
+		if(instance == null) {
+			instance = new UserList();
+		}
+		
+		return instance;
+	}
+	
+	public static void resetInstance() {
+		instance = new UserList();
+	}
+	
 
     public int login(String username, String password){
         int type = -1;
