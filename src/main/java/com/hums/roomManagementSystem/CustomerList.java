@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 
 public class CustomerList implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private int nextID =0;
 	private ArrayList<Customer> customers;
 	
