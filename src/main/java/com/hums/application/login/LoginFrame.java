@@ -2,7 +2,6 @@ package com.hums.application.login;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
 
 import javax.swing.DefaultComboBoxModel;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.hums.tools.login.RoomManager;
+import com.hums.tools.data.FileHandling;
 import com.hums.tools.login.UserList;
 
 public class LoginFrame extends JFrame {
@@ -75,28 +76,9 @@ public class LoginFrame extends JFrame {
 	private static final Font defaultErrorMessageFont = new Font("Tahoma", Font.PLAIN, 10);
 
 	private UserList uList;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {		
-			public void run() {
-				UserList list = new UserList();
-				list.addUser(new RoomManager("Sotiris", "Sotiriou", "sotsot", "232680457", "sotiris.sot2000@gmail.com"));
-				try {
-					LoginFrame frame = new LoginFrame(list);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
-	public LoginFrame(UserList uList) {
-		this.uList = uList;
+	public LoginFrame() {
+		this.uList = (UserList) FileHandling.importFromFile("users.ser");
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,6 +112,11 @@ public class LoginFrame extends JFrame {
 		initComponentsLogin();
 		createEventsRegister();
 		createEventsLogin();
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				FileHandling.exportToFile(uList);
+			}
+		});
 		
 	}
 	
