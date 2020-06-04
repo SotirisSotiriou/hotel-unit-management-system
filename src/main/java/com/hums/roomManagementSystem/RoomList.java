@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
+
 public class RoomList implements Serializable{
 	
 	
@@ -227,6 +228,13 @@ public class RoomList implements Serializable{
 		}
 		
 		return availableRooms;
+	}
+	
+	public void editRoom(Room roomToEdit, int beds, int costPerDay) {
+		
+		roomToEdit.setBeds(beds);
+		roomToEdit.setCostPerDay(costPerDay);
+		
 	}
 	
 	/*public ArrayList<Room> getAvailableRooms(LocalDate checkIN, LocalDate checkOUT, ArrayList<RoomReservation> reservations){

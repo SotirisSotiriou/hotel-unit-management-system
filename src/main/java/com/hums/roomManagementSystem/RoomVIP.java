@@ -1,8 +1,6 @@
 package com.hums.roomManagementSystem;
 
 
-
-
 public class RoomVIP extends Room{
 
 	
@@ -13,6 +11,11 @@ public class RoomVIP extends Room{
 
 	public RoomVIP(int number, int floor, int bedsCapacity) {
 		super(number, floor, bedsCapacity);
+		setDefaultCostPerDay();
+	}
+	
+	private void setDefaultCostPerDay() {
+		this.setCostPerDay( RMS_Registry.getInstance().getRoomList().getVipCost() * this.getBeds() );
 	}
 	
 	public String toString() {

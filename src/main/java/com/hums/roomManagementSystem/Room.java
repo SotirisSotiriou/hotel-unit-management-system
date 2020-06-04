@@ -14,11 +14,11 @@ public abstract class Room implements Serializable{
 	
 	
 
-	public Room(int number, int floor, int bedsCapacity) {
+	public Room(int number, int floor, int beds) {
 		super();
 		this.roomNumber = number;
 		this.floor = floor;
-		this.beds = bedsCapacity;
+		this.beds = beds;
 		
 	}
 	
@@ -34,10 +34,8 @@ public abstract class Room implements Serializable{
 		return costPerDay;
 	}
 	
-	public void setCostPerDay(int costPerBed) {
-		
-		this.costPerDay = costPerBed * beds;
-		
+	public void setCostPerDay(int costPerDay) {
+		this.costPerDay = costPerDay;
 	}
 
 

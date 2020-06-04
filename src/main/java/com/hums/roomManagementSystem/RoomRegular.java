@@ -1,7 +1,6 @@
 package com.hums.roomManagementSystem;
 
 
-
 public class RoomRegular extends Room {
 	
 
@@ -12,8 +11,13 @@ public class RoomRegular extends Room {
 
 	public RoomRegular(int number, int floor, int bedsCapacity) {
 		super(number, floor, bedsCapacity);
+		setDefaultCostPerDay();
 	}
-
+	
+	private void setDefaultCostPerDay() {
+		this.setCostPerDay( RMS_Registry.getInstance().getRoomList().getRegularCost() * this.getBeds() );
+	}
+	
 	public String toString() {
 		
 		if(this.getBeds()==1) {
