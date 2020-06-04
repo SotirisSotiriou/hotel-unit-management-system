@@ -5,6 +5,10 @@ import java.io.Serializable;
 
 public class Hall implements Comparable<Hall>, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int capacity;
 	private int code;
 	private String location;
