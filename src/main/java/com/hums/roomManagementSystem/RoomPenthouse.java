@@ -1,8 +1,6 @@
 package com.hums.roomManagementSystem;
 
 
-
-
 public class RoomPenthouse extends Room {
 	
 	
@@ -13,6 +11,11 @@ public class RoomPenthouse extends Room {
 
 	public RoomPenthouse(int number, int floor, int bedsCapacity) {
 		super(number, floor, bedsCapacity);
+		setDefaultCostPerDay();
+	}
+	
+	private void setDefaultCostPerDay() {
+		this.setCostPerDay( RMS_Registry.getInstance().getRoomList().getPenthouseCost() );
 	}
 	
 	public String toString() {
