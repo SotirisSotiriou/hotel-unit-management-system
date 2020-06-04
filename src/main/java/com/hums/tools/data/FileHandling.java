@@ -6,6 +6,7 @@ import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.restaurantManagementSystem.REMS_Registry;
 import com.hums.roomManagementSystem.RMS_Registry;
+import com.hums.tools.login.UserList;
 
 public abstract class FileHandling {
 	public static void exportToFile(Object obj) {
@@ -23,6 +24,10 @@ public abstract class FileHandling {
 			else if(obj.getClass().equals(HRMS_Registry.class)) {
 				oos = new ObjectOutputStream(new FileOutputStream(new File("src/main/resources/hrms-registry.ser")));
 			}
+			else if(obj.getClass().equals(UserList.class)) {
+				oos = new ObjectOutputStream(new FileOutputStream(new File("src/main/resources/users.ser")));
+			}
+			
 			if(oos != null) {
 				oos.writeObject(obj);
 				oos.flush();
