@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
+
 public class RoomReservationList implements Serializable{
 	
 	/**
@@ -53,6 +54,15 @@ public class RoomReservationList implements Serializable{
 				reservations.remove(i);
 			
 		}
+	}
+	
+	public RoomReservation getReservationByID(int id) {
+		
+		for (RoomReservation roomReservation : reservations) {
+			if (roomReservation.getId()==id)
+				return roomReservation;
+		}
+		return null;
 	}
 	
 	public ArrayList<RoomReservation> getReservationsByCustomerTerm(String term){
