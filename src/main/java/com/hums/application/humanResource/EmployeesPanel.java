@@ -47,7 +47,7 @@ public class EmployeesPanel extends JPanel {
 		buttonEditEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				HR_Frame.showEditEmployeePanel();
 				
 			}
 		});
