@@ -12,6 +12,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+import com.hums.humanResourceManagementSystem.EmpType;
 import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.tools.data.FileHandling;
@@ -56,7 +57,8 @@ public class HR_Frame extends JFrame {
 	 * Create the frame.
 	 */
 	public HR_Frame() {
-		HRMS_Registry.setInstance((HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser"));
+		HRMS_Registry reg = HRMS_Registry.getInstance();
+		reg = (HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser");
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 639, 426);

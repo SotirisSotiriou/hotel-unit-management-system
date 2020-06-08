@@ -23,10 +23,6 @@ public class EMS_Registry implements Serializable{
 		
 	}
 	
-	public static void setInstance(EMS_Registry instance) {
-		registryInstance = instance;
-	}
-	
 	public static void resetInstance() {
 		registryInstance = new EMS_Registry();
 	}

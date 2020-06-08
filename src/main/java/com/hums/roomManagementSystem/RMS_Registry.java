@@ -23,10 +23,6 @@ public class RMS_Registry implements Serializable{
 		return registryInstance;
 	}
 	
-	public static void setInstance(RMS_Registry instance) {
-		registryInstance = instance;
-	}
-	
 	public static void resetInstance() {
 		registryInstance = new RMS_Registry();
 	}

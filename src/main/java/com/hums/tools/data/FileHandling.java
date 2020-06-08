@@ -57,7 +57,13 @@ public abstract class FileHandling {
 				ois.close();
 				return obj;
 			}
-		} catch(IOException | ClassNotFoundException e) {
+		} catch(FileNotFoundException | ClassNotFoundException e) {
+			if(filename.equals("users.ser")) return UserList.getInstance();
+			if(filename.equals("rms-registry.ser")) return RMS_Registry.getInstance();
+			if(filename.equals("ems-registry.ser")) return EMS_Registry.getInstance();
+			if(filename.equals("rems-registry.ser")) return REMS_Registry.getInstance();
+			if(filename.equals("hrms-registry.ser")) return HRMS_Registry.getInstance();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
