@@ -32,12 +32,13 @@ public class EditEmployeePanel extends JPanel {
 	private JTextField textFieldNewEmail;
 	private JTextField textFieldNewAddess;
 	private JTextField textFieldNewSSN;
+	
+	private Employee empToEdit = null;
 
 	/**
 	 * Create the panel.
 	 */
-	public EditEmployeePanel(Employee emp) {
-		
+	public EditEmployeePanel() {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
@@ -63,42 +64,42 @@ public class EditEmployeePanel extends JPanel {
 		JLabel lblNewLabel = new JLabel("OLD Last Name");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldLastName = new JTextField(emp.getLastname());
+		textFieldOldLastName = new JTextField(empToEdit.getLastname());
 		textFieldOldLastName.setEditable(false);
 		textFieldOldLastName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("OLD First Name");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldFirstName = new JTextField(emp.getFirstname());
+		textFieldOldFirstName = new JTextField(empToEdit.getFirstname());
 		textFieldOldFirstName.setEditable(false);
 		textFieldOldFirstName.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("OLD Phone");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldPhone = new JTextField(emp.getPhone());
+		textFieldOldPhone = new JTextField(empToEdit.getPhone());
 		textFieldOldPhone.setEditable(false);
 		textFieldOldPhone.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("OLD Email");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldEmail = new JTextField(emp.getEmail());
+		textFieldOldEmail = new JTextField(empToEdit.getEmail());
 		textFieldOldEmail.setEditable(false);
 		textFieldOldEmail.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("OLD Address");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldAddress = new JTextField();
+		textFieldOldAddress = new JTextField(empToEdit.getAddress());
 		textFieldOldAddress.setEditable(false);
 		textFieldOldAddress.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("OLD SSN");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldSSN = new JTextField(emp.getSsn());
+		textFieldOldSSN = new JTextField(empToEdit.getSsn());
 		textFieldOldSSN.setEditable(false);
 		textFieldOldSSN.setColumns(10);
 		
@@ -255,6 +256,10 @@ public class EditEmployeePanel extends JPanel {
 		);
 		panel.setLayout(gl_panel);
 		setLayout(groupLayout);
-
+		
+	}
+	
+	public void setPanelCustomer(Employee emp) {
+		empToEdit = emp;
 	}
 }

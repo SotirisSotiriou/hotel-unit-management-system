@@ -12,6 +12,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
+import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.tools.data.FileHandling;
 
@@ -157,7 +158,7 @@ public class HR_Frame extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	public static void showEditEmployeePanel(/* Employee employeeToEdit */) {
+	public static void showEditEmployeePanel(Employee emp) {
 		
 		cl_cards.show(cards, "editEmp");
 		
