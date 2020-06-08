@@ -1,8 +1,12 @@
 package com.hums.tools.login;
 
-public class RoomManager extends User{
+import java.io.Serializable;
 
-    public RoomManager(String firstname, String lastname, String username, String password, String email){
+public class RoomManager extends User implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	public RoomManager(String firstname, String lastname, String username, String password, String email){
         super(firstname, lastname, username, password, email);
     }
 }
