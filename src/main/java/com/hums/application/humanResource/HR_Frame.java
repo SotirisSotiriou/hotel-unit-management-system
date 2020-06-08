@@ -34,7 +34,7 @@ public class HR_Frame extends JFrame {
 	private NewEmployeePanel newEmployeePanel;
 	private EmployeesPanel employeesPanel;
 	
-	private EditEmployeePanel editEmployeePanel;
+	private static EditEmployeePanel editEmployeePanel;
 	
 	private HRMS_Registry reg;
 
@@ -158,7 +158,7 @@ public class HR_Frame extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	public void showEditEmployeePanel(Employee emp) {
+	public static void showEditEmployeePanel(Employee emp) {
 		editEmployeePanel.setPanelEmployee(emp);
 		cl_cards.show(cards, "editEmp");
 		
