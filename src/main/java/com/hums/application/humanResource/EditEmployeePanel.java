@@ -10,6 +10,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
+
+import com.hums.humanResourceManagementSystem.Employee;
+
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -33,7 +36,7 @@ public class EditEmployeePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditEmployeePanel() {
+	public EditEmployeePanel(Employee emp) {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -60,28 +63,28 @@ public class EditEmployeePanel extends JPanel {
 		JLabel lblNewLabel = new JLabel("OLD Last Name");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldLastName = new JTextField();
+		textFieldOldLastName = new JTextField(emp.getLastname());
 		textFieldOldLastName.setEditable(false);
 		textFieldOldLastName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("OLD First Name");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldFirstName = new JTextField();
+		textFieldOldFirstName = new JTextField(emp.getFirstname());
 		textFieldOldFirstName.setEditable(false);
 		textFieldOldFirstName.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("OLD Phone");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldPhone = new JTextField();
+		textFieldOldPhone = new JTextField(emp.getPhone());
 		textFieldOldPhone.setEditable(false);
 		textFieldOldPhone.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("OLD Email");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldEmail = new JTextField();
+		textFieldOldEmail = new JTextField(emp.getEmail());
 		textFieldOldEmail.setEditable(false);
 		textFieldOldEmail.setColumns(10);
 		
@@ -95,7 +98,7 @@ public class EditEmployeePanel extends JPanel {
 		JLabel lblNewLabel_5 = new JLabel("OLD SSN");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textFieldOldSSN = new JTextField();
+		textFieldOldSSN = new JTextField(emp.getSsn());
 		textFieldOldSSN.setEditable(false);
 		textFieldOldSSN.setColumns(10);
 		
