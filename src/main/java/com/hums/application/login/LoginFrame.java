@@ -112,11 +112,6 @@ public class LoginFrame extends JFrame {
 		initComponentsLogin();
 		createEventsRegister();
 		createEventsLogin();
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				FileHandling.exportToFile(uList);
-			}
-		});
 		
 	}
 	
@@ -368,7 +363,8 @@ public class LoginFrame extends JFrame {
 					registerConfirmErrorMessage.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Registered successfully!");
 					uList.register(registerFirstName, registerLastName, registerUsername, registerPassword, registerEmail, registerComboBoxChoice);
-					cl.show(contentPaneLogin, "login");
+					FileHandling.exportToFile(uList);
+					cl.show(cards, "login");
 					setSize(300, 350);
 					setTitle("Login");
 				}else {
