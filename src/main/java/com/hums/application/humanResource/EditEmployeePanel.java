@@ -259,7 +259,7 @@ public class EditEmployeePanel extends JPanel {
 		
 	}
 	
-	public void setPanelCustomer(Employee emp) {
+	public void setPanelEmployee(Employee emp) {
 		empToEdit = emp;
 	}
 }

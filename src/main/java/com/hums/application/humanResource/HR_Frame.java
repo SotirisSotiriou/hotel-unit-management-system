@@ -158,8 +158,8 @@ public class HR_Frame extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	public static void showEditEmployeePanel(Employee emp) {
-		
+	public void showEditEmployeePanel(Employee emp) {
+		editEmployeePanel.setPanelEmployee(emp);
 		cl_cards.show(cards, "editEmp");
 		
 	}
