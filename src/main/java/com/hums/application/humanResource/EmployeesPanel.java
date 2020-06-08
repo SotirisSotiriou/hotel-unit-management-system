@@ -47,7 +47,15 @@ public class EmployeesPanel extends JPanel {
 		buttonEditEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				HR_Frame.showEditEmployeePanel();
+				
+				int row= employeesTable.getSelectedRow();
+				if( employeesTableModel.getRowCount()!=0 && row !=-1)
+				{
+					String lastname= (String)employeesTableModel.getValueAt(row, 0);
+					String firstname=(String)employeesTableModel.getValueAt(row, 1);
+					Employee employeeToEdit= HRMS_Registry.getInstance().getEmpList().searchEmployee(firstname, lastname);
+					HR_Frame.showEditEmployeePanel(employeeToEdit);
+				}
 				
 			}
 		});
