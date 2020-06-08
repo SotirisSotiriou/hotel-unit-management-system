@@ -13,7 +13,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import com.hums.humanResourceManagementSystem.*;
 public class EmployeesPanel extends JPanel {
 	private JTable employeesTable;
 	private DefaultTableModel employeesTableModel;
@@ -76,4 +76,18 @@ public class EmployeesPanel extends JPanel {
 		setLayout(groupLayout);
 
 	}
+	public void updateModel() {
+		HRMS_Registry reg= HRMS_Registry.getInstance();
+		
+		employeesTableModel.setRowCount(0);
+		for(Employee employee: reg.getEmpList().getEmployees())
+		{
+			employeesTableModel.addRow(new Object[] {employee.getLastname(),employee.getFirstname(),
+					employee.getPhone(),employee.getEmail(),employee.getAddress(),
+					employee.getAddress(),employee.getSsn(),employee.getType(),employee.getSalary()});
+		}
+		employeesTableModel.fireTableDataChanged();
+		
+	}
+
 }
