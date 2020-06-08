@@ -36,8 +36,6 @@ public class HR_Frame extends JFrame {
 	
 	private static EditEmployeePanel editEmployeePanel;
 	
-	private HRMS_Registry reg;
-
 	/**
 	 * Launch the application.
 	 */
@@ -58,7 +56,7 @@ public class HR_Frame extends JFrame {
 	 * Create the frame.
 	 */
 	public HR_Frame() {
-		reg = (HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser");
+		HRMS_Registry.setInstance((HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser"));
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 639, 426);
@@ -111,7 +109,7 @@ public class HR_Frame extends JFrame {
 		buttonEmployees = new JButton("Employees");
 		buttonEmployees.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				EmployeesPanel.updateModel();
 				cl_cards.show(cards, "employees");
 				
 			}

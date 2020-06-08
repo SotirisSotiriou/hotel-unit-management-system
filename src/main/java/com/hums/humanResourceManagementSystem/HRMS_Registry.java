@@ -22,6 +22,10 @@ public class HRMS_Registry implements Serializable{
 			
 	}
 	
+	public static void setInstance(HRMS_Registry instance) {
+		registryInstance = instance;
+	}
+	
 	public static void resetInstance() {
 		registryInstance = new HRMS_Registry();
 	}

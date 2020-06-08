@@ -8,15 +8,19 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.hums.humanResourceManagementSystem.*;
+
+
 public class EmployeesPanel extends JPanel {
-	private JTable employeesTable;
-	private DefaultTableModel employeesTableModel;
+
+	private static final long serialVersionUID = 1L;
+	
+	private static JTable employeesTable;
+	private static DefaultTableModel employeesTableModel;
 	private JButton buttonDeleteEmployee;
 	private JButton buttonEditEmployee;
 
@@ -84,7 +88,7 @@ public class EmployeesPanel extends JPanel {
 		setLayout(groupLayout);
 
 	}
-	public void updateModel() {
+	public static void updateModel() {
 		HRMS_Registry reg= HRMS_Registry.getInstance();
 		
 		employeesTableModel.setRowCount(0);
