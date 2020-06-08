@@ -1,12 +1,14 @@
 package com.hums.restaurantManagementSystem;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Storage {
-	
+public class Storage implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	public HashMap<Ingredient, Double> ingredients = new HashMap<>();
 	
 	public Storage()

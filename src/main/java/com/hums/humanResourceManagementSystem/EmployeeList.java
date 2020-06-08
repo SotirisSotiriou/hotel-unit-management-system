@@ -2,9 +2,10 @@ package com.hums.humanResourceManagementSystem;
 
 import com.hums.tools.Pair;
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class EmployeeList {
+public class EmployeeList implements Serializable{
 	private ArrayList<Employee> employees;
 	
 	public EmployeeList(ArrayList<Employee> employees) {
