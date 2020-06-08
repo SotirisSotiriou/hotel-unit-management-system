@@ -59,7 +59,7 @@ public class EmployeesPanel extends JPanel {
 		employeesTable = new JTable();
 		
 		employeesTableModel = new DefaultTableModel(null, new String[] {
-				"ID", "Last Name", "First Name", "Phone", "Email", "Address", "SSN", "Type", "Salary"
+				"Last Name", "First Name", "Phone", "Email", "Address", "SSN", "Type", "Salary"
 			}) {
 				private static final long serialVersionUID = 1L;
 
