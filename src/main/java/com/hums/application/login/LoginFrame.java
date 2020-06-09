@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.hums.application.humanResource.HR_Frame;
 import com.hums.tools.data.FileHandling;
 import com.hums.tools.login.UserList;
 
@@ -185,17 +186,17 @@ public class LoginFrame extends JFrame {
 						break;
 					case 2:
 						JOptionPane.showMessageDialog(null, "Human Resource Manager logged in successfully!");
-						//create new EMS main frame here
+						new HR_Frame();
 						dispose();
 						break;
 					case 3:
 						JOptionPane.showMessageDialog(null, "Event Manager logged in successfully!");
-						//create new REMS main frame here
+						//create new EMS main frame here
 						dispose();
 						break;
 					case 4:
 						JOptionPane.showMessageDialog(null, "Restaurant Manager logged in successfully!");
-						//create new HRMS main frame here
+						//create new REMS main frame here
 						dispose();
 						break;
 					}
