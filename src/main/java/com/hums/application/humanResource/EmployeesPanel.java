@@ -83,11 +83,13 @@ public class EmployeesPanel extends JPanel {
 			};
 			
 		employeesTable.setModel(employeesTableModel);
+		updateModel();
 			
 		scrollPane.setViewportView(employeesTable);
 		setLayout(groupLayout);
 
 	}
+	
 	public static void updateModel() {
 		HRMS_Registry reg= HRMS_Registry.getInstance();
 		
