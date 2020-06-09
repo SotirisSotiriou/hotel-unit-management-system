@@ -14,6 +14,9 @@ import javax.swing.border.LineBorder;
 import com.hums.humanResourceManagementSystem.Employee;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class EditEmployeePanel extends JPanel {
@@ -33,7 +36,7 @@ public class EditEmployeePanel extends JPanel {
 	private JTextField textFieldNewFirstName;
 	private JTextField textFieldNewPhone;
 	private JTextField textFieldNewEmail;
-	private JTextField textFieldNewAddess;
+	private JTextField textFieldNewAddress;
 	private JTextField textFieldNewSSN;
 	
 	private Employee empToEdit = null;
@@ -62,6 +65,23 @@ public class EditEmployeePanel extends JPanel {
 		);
 		
 		buttonUpdateEmployee = new JButton("Update Employee");
+		buttonUpdateEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String firstName = textFieldNewFirstName.getText();
+				String lastName = textFieldNewLastName.getText();
+				String phone = textFieldNewPhone.getText();
+				String address = textFieldNewAddress.getText();
+				String email = textFieldNewEmail.getText();
+				String ssn = textFieldNewSSN.getText();
+				empToEdit.setFirstname(firstName);
+				empToEdit.setLastname(lastName);
+				empToEdit.setPhone(phone);
+				empToEdit.setAddress(address);
+				empToEdit.setEmail(email);
+				empToEdit.setSsn(ssn);
+				EmployeesPanel.updateModel();
+			}
+		});
 		panel_1.add(buttonUpdateEmployee);
 		
 		JLabel lblNewLabel = new JLabel("OLD Last Name");
@@ -145,8 +165,8 @@ public class EditEmployeePanel extends JPanel {
 		textFieldNewEmail = new JTextField();
 		textFieldNewEmail.setColumns(10);
 		
-		textFieldNewAddess = new JTextField();
-		textFieldNewAddess.setColumns(10);
+		textFieldNewAddress = new JTextField();
+		textFieldNewAddress.setColumns(10);
 		
 		textFieldNewSSN = new JTextField();
 		textFieldNewSSN.setColumns(10);
@@ -193,7 +213,7 @@ public class EditEmployeePanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(textFieldNewEmail, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textFieldNewAddess, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textFieldNewAddress, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textFieldNewSSN, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(30, Short.MAX_VALUE))
 		);
@@ -222,7 +242,7 @@ public class EditEmployeePanel extends JPanel {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewAddress)
-								.addComponent(textFieldNewAddess, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textFieldNewAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewSsn)
