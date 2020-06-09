@@ -10,7 +10,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
+
+import com.hums.humanResourceManagementSystem.EmpType;
+import com.hums.humanResourceManagementSystem.Employee;
+import com.hums.humanResourceManagementSystem.HRMS_Registry;
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class NewEmployeePanel extends JPanel {
@@ -52,6 +60,32 @@ public class NewEmployeePanel extends JPanel {
 		
 		buttonAddEmployee = new JButton("Add Employee");
 		panel_1.add(buttonAddEmployee);
+		buttonAddEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String firstName = textFieldFirstName.getText();
+				String lastName =  textFieldLastName.getText();
+				String phone = textFieldPhone.getText();
+				String email = textFieldEmail.getText();
+				String address = textFieldAddress.getText();
+				String ssn = textFieldSSN.getText();
+				String type = typeModel.getSelectedItem().toString();
+				EmpType emtype = null;
+				if(type.equals("Receptionist"))
+					emtype = EmpType.RECEPTIONIST;
+				else if(type.equals("Human Resource Manager"))
+					emtype = EmpType.HUMAN_RESOURCE_MANAGER;
+				else if(type.equals("Restaurant Manager"))
+					emtype = EmpType.RESTAURANT_MANAGER;
+				else
+					emtype = EmpType.EVENT_MANAGER;
+				Employee emp = new Employee(firstName,lastName,email,phone,
+											address,ssn,emtype);
+				HRMS_Registry.getInstance().getEmpList().addEmployee(emp);
+				EmployeesPanel.updateModel();
+				
+			}
+		});
+		
 		
 		JLabel lblNewLabel = new JLabel("Last Name");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
