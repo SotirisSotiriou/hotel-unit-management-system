@@ -1,7 +1,11 @@
 package com.hums.humanResourceManagementSystem;
 
+import java.io.Serializable;
 
-public class Salary {
+public class Salary implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private double price;
 	public static final double DEFAULT_RECEPTIONIST_SALARY = 2000.00;
 	public static final double DEFAULT_EVENT_MANAGER_SALARY = 4500.00;

@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.time.LocalTime;
 
 public class EmployeeList implements Serializable{
+
+	
 	private ArrayList<Employee> employees;
 	
 	public EmployeeList(ArrayList<Employee> employees) {

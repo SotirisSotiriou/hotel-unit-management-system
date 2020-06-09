@@ -2,9 +2,13 @@ package com.hums.humanResourceManagementSystem;
 
 import com.hums.tools.Pair;
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.LocalTime;
 
-public class DailySchedule {
+public class DailySchedule implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private String day;
 	private ArrayList<Pair<LocalTime,LocalTime>> hours;
 	
