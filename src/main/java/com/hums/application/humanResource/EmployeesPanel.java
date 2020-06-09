@@ -66,6 +66,19 @@ public class EmployeesPanel extends JPanel {
 		panel.add(buttonEditEmployee);
 		
 		buttonDeleteEmployee = new JButton("Delete Employee");
+		buttonDeleteEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = employeesTable.getSelectedRow();
+				if(employeesTableModel.getRowCount()!=0 && row != -1) {
+					String lastName =(String) employeesTableModel.getValueAt(row, 0);
+					String firstName =(String) employeesTableModel.getValueAt(row, 1);
+					Employee emp = HRMS_Registry.getInstance().getEmpList().searchEmployee(firstName, lastName);
+					HRMS_Registry.getInstance().getEmpList().removeEmployee(emp);
+					updateModel();
+					
+				}
+			}
+		});
 		panel.add(buttonDeleteEmployee);
 		
 		employeesTable = new JTable();
