@@ -6,6 +6,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -14,6 +15,7 @@ import javax.swing.border.LineBorder;
 import com.hums.humanResourceManagementSystem.EmpType;
 import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -82,6 +84,8 @@ public class NewEmployeePanel extends JPanel {
 											address,ssn,emtype);
 				HRMS_Registry.getInstance().getEmpList().addEmployee(emp);
 				EmployeesPanel.updateModel();
+				JOptionPane.showMessageDialog(null, "Employee added successfully");
+				FileHandling.exportToFile(HRMS_Registry.getInstance());
 				
 			}
 		});

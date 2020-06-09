@@ -12,6 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
 
 import com.hums.humanResourceManagementSystem.Employee;
+import com.hums.humanResourceManagementSystem.HRMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -80,6 +82,7 @@ public class EditEmployeePanel extends JPanel {
 				empToEdit.setEmail(email);
 				empToEdit.setSsn(ssn);
 				EmployeesPanel.updateModel();
+				FileHandling.exportToFile(HRMS_Registry.getInstance());
 			}
 		});
 		panel_1.add(buttonUpdateEmployee);
