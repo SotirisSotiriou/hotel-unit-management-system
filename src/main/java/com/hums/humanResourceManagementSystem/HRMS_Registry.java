@@ -5,8 +5,10 @@ import java.io.Serializable;
 public class HRMS_Registry implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
+
 	
 	private static HRMS_Registry registryInstance = null;
+
 	
 	private HRMS_Registry() {
 		this.empList = new EmployeeList();
@@ -20,6 +22,10 @@ public class HRMS_Registry implements Serializable{
 			
 			return registryInstance;
 			
+	}
+	
+	public static void setInstance(HRMS_Registry reg) {
+		registryInstance = reg;
 	}
 		
 	public static void resetInstance() {
