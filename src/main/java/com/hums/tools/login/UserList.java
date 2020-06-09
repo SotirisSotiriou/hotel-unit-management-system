@@ -38,13 +38,13 @@ public class UserList implements Serializable{
                     if(u instanceof RoomManager){
                         type = 1;
                     }
-                    else if(u instanceof EventManager){
+                    else if(u instanceof HumanResourceManager){
                         type = 2;
                     }
-                    else if(u instanceof RestaurantManager){
+                    else if(u instanceof EventManager){
                         type = 3;
                     }
-                    else if(u instanceof HumanResourceManager){
+                    else if(u instanceof RestaurantManager){
                         type = 4;
                     }
                 }
