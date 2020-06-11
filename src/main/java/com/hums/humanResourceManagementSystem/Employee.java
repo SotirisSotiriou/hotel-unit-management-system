@@ -6,6 +6,8 @@ public class Employee implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
+	
 	private String firstname;
 	private String lastname;
 	private String email;
@@ -25,6 +27,8 @@ public class Employee implements Serializable{
 		this.ssn = ssn;
 		this.type = type;
 		this.salary = new Salary(type);
+		
+		this.schedule = new Schedule();
 	}
 	
 	public Employee(String firstname, String lastname, String email, String phone, String address, String ssn, EmpType type, double price, Schedule schedule) {
@@ -38,6 +42,15 @@ public class Employee implements Serializable{
 		this.schedule = schedule;
 		Salary salary = new Salary(this.type);
 		this.salary = salary;
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {
@@ -111,6 +124,11 @@ public class Employee implements Serializable{
 	public void setSchedule(Schedule schedule) {
 		this.schedule = schedule;
 	}
+	
+	public String toString() {
+		return id+ " " + lastname + " " + firstname + " " + phone;
+	}
+	
 	
 	
 }
