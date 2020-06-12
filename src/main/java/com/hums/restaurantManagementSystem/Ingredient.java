@@ -2,12 +2,14 @@ package com.hums.restaurantManagementSystem;
 
 public class Ingredient {
 	
+	private int id;
 	private String name;
+	private double quantity;
 	private double max_capacity;
 	private double min_capacity;
 	
 
-	public Ingredient(String name, double max_capacity, double min_capacity)
+	public Ingredient(String name, double min_capacity, double max_capacity)
 	{
 		this.name = name;
 		this.max_capacity = max_capacity;
@@ -32,6 +34,29 @@ public class Ingredient {
 	public void setMin_capacity(double min_capacity) {
 		this.min_capacity = min_capacity;
 	}
+
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return id + ". " + name;
+	}
+	
+	
 	
 
 }
