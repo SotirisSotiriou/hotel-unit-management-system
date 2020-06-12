@@ -20,9 +20,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import com.hums.eventManagementSystem.EMS_Registry;
-import com.hums.eventManagementSystem.EventReservationList;
 import com.hums.eventManagementSystem.Hall;
-import com.hums.eventManagementSystem.HallList;
+import com.hums.tools.data.FileHandling;
 
 public class EMS_Frame extends JFrame {
 	
@@ -30,7 +29,6 @@ public class EMS_Frame extends JFrame {
 	private JPanel contentPane;
 	private JPanel cards;
 	private CardLayout cl_cards;
-	private static EMS_Registry registry;
 
 	/**
 	 * Launch the application.
@@ -53,21 +51,8 @@ public class EMS_Frame extends JFrame {
 	 */
 	public EMS_Frame() {
 		
-		
-		
-		registry = EMS_Registry.getInstance();
-		
-		
-		
-		registry.setEventReservationList(new EventReservationList());
-		registry.setHallList(new HallList());
-		
-		
-		
-		
-		
-		
-		
+		EMS_Registry reg = (EMS_Registry) FileHandling.importFromFile("ems-registry.ser");
+		EMS_Registry.setInstance(reg);
 		
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +89,7 @@ public class EMS_Frame extends JFrame {
 		HallsPanel hallsPanel = new HallsPanel();
 		NewEventPanel newEventPanel = new NewEventPanel();
 		
-		
+		EventsPanel.updateModel();
 		
 		
 		cards.add(eventsPanel, "events");
@@ -128,7 +113,7 @@ public class EMS_Frame extends JFrame {
 		buttonEvents.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				eventsPanel.updateModel();
+				EventsPanel.updateModel();
 				cl_cards.show(cards, "events");
 				
 			}
@@ -161,6 +146,7 @@ public class EMS_Frame extends JFrame {
 							capacity = Integer.parseInt(newHallCapacity);
 							if(capacity!=0) {
 								JOptionPane.showMessageDialog(null, "Hall created successfully");
+								FileHandling.exportToFile(EMS_Registry.getInstance());
 							}
 							else {
 								JOptionPane.showMessageDialog(null, "Capacity Cannot be 0", "Error", JOptionPane.ERROR_MESSAGE);;
@@ -181,7 +167,7 @@ public class EMS_Frame extends JFrame {
 				
 				if( !location.equals("9999999999999999999999") && capacity!=0 ) {
 					Hall aHall = new Hall(capacity,location);
-					registry.getHallList().addHall(aHall);
+					reg.getHallList().addHall(aHall);
 					
 					
 				}
@@ -229,8 +215,5 @@ public class EMS_Frame extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	public static EMS_Registry getEventRegistry() {
-		return registry;
-	}
 	
 }

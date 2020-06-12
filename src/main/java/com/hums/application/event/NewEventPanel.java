@@ -34,6 +34,7 @@ import com.hums.eventManagementSystem.Condition;
 import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.eventManagementSystem.EventReservation;
 import com.hums.eventManagementSystem.Info;
+import com.hums.tools.data.FileHandling;
 
 public class NewEventPanel extends JPanel {
 	
@@ -147,8 +148,8 @@ public class NewEventPanel extends JPanel {
 				
 				if( phone.matches("[0-9]{10}") ) {
 					phoneEmpty = false;
-				}else {
-					errorMessage += "Phone(Must start with '69' or '2310')\n";
+				} else {
+					errorMessage += "Phone must be 10 digits";
 				}
 				
 				if( (end.isAfter(start) || end.isEqual(start)) && endTime.isAfter(startTime) ) {
@@ -176,6 +177,7 @@ public class NewEventPanel extends JPanel {
 					
 					if(EMS_Registry.getInstance().getEventReservationList().addReservation(aReservation)) {
 						JOptionPane.showMessageDialog(null, "New reservation added!");
+						FileHandling.exportToFile(EMS_Registry.getInstance());
 					}else {
 						JOptionPane.showMessageDialog(null, "Error adding reservation!\nPossible causes: No hall available","ERROR",JOptionPane.ERROR_MESSAGE);
 					}

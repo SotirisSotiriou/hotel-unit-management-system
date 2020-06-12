@@ -7,7 +7,6 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -24,6 +23,7 @@ import javax.swing.table.TableColumn;
 
 import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.eventManagementSystem.EventReservation;
+import com.hums.tools.data.FileHandling;
 
 public class EventsPanel extends JPanel {
 	
@@ -33,7 +33,7 @@ public class EventsPanel extends JPanel {
 	private JButton buttonDelete;
 	private JButton buttonMoreDetails;
 	private JScrollPane scrollPane;
-	private DefaultTableModel eventsTableModel;
+	private static DefaultTableModel eventsTableModel;
 
 	/**
 	 * Create the panel.
@@ -87,7 +87,7 @@ public class EventsPanel extends JPanel {
 					int id = (int) eventsTableModel.getValueAt(row, 0);
 					
 					EMS_Registry.getInstance().getEventReservationList().deleteReservationByID(id);
-					
+					FileHandling.exportToFile(EMS_Registry.getInstance());
 					updateModel();
 				}
 				
@@ -146,13 +146,11 @@ public class EventsPanel extends JPanel {
 		}
 	}
 	
-	public void updateModel() {
-		
-		ArrayList<EventReservation> reservations = EMS_Registry.getInstance().getEventReservationList().getReservations();
+	public static void updateModel() {
 		
 		eventsTableModel.setRowCount(0);
 		
-		for (EventReservation event: reservations) {
+		for (EventReservation event: EMS_Registry.getInstance().getEventReservationList().getReservations()) {
 			
 			eventsTableModel.addRow(new Object[] {event.getId(),
 													event.getStartTime(), 
