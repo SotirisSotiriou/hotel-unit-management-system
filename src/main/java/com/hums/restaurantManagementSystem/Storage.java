@@ -1,9 +1,15 @@
 package com.hums.restaurantManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Storage {
+public class Storage implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 	
 	private int nextID=0;

@@ -1,9 +1,15 @@
 package com.hums.restaurantManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DishList {
+public class DishList implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int nextID;
 	
 	private ArrayList<Dish> dishes = new ArrayList<Dish>();

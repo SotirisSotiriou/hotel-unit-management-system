@@ -1,9 +1,14 @@
 package com.hums.restaurantManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dish {
+public class Dish implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	

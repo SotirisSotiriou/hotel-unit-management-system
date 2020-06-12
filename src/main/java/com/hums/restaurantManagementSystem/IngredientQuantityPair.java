@@ -1,7 +1,13 @@
 package com.hums.restaurantManagementSystem;
 
-public class IngredientQuantityPair {
+import java.io.Serializable;
+
+public class IngredientQuantityPair implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Ingredient ingredient;
 	private Double quantity;
 	
