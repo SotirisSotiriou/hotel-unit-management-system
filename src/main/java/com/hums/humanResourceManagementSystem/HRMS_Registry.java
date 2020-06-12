@@ -14,7 +14,7 @@ public class HRMS_Registry implements Serializable{
 		this.empList = new EmployeeList();
 	}
 	
-	public static HRMS_Registry getInstance() {
+	public synchronized static HRMS_Registry getInstance() {
 			
 			if(registryInstance == null) {
 				registryInstance = new HRMS_Registry();

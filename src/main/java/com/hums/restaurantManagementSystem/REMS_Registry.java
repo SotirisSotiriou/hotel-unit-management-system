@@ -13,7 +13,7 @@ public class REMS_Registry implements Serializable{
 		this.storage = new Storage();
 	}
 
-	public static REMS_Registry getInstance() {
+	public synchronized static REMS_Registry getInstance() {
 			
 			if(registryInstance == null) {
 				registryInstance = new REMS_Registry();

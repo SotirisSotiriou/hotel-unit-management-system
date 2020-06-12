@@ -13,7 +13,7 @@ public class EMS_Registry implements Serializable{
 		this.hallList = new HallList();
 	}
 	
-	public static EMS_Registry getInstance() {
+	public synchronized static EMS_Registry getInstance() {
 		
 		if(registryInstance == null) {
 			registryInstance = new EMS_Registry();
