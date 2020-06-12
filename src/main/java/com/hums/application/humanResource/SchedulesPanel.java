@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,15 +18,16 @@ import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.tools.data.FileHandling;
 
-public class SalaryPanel extends JPanel{
+public class SchedulesPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
 	private static JTable employeesTable;
 	private static DefaultTableModel employeesTableModel;
-	private JButton buttonChangeSalary;
+	private JButton buttonMoveSchedule;
+	private JButton buttonViewEmpSchedule;
 	
-	public SalaryPanel() {
+	public SchedulesPanel() {
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JPanel panel = new JPanel();
@@ -46,38 +46,41 @@ public class SalaryPanel extends JPanel{
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 		);
 		
+		buttonMoveSchedule = new JButton("Move Schedule");
+		buttonMoveSchedule.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HRMS_Registry.getInstance().getEmpList().moveSchedule();
+				FileHandling.exportToFile(HRMS_Registry.getInstance());
+			}
+			
+		});
+		panel.add(buttonMoveSchedule);
 		
-		buttonChangeSalary = new JButton("Change Salary");
-		buttonChangeSalary.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int row = employeesTable.getSelectedRow();
-				if(employeesTableModel.getRowCount()!=0 && row != -1) {
-					String lastName =(String) employeesTableModel.getValueAt(row, 0);
-					String firstName =(String) employeesTableModel.getValueAt(row, 1);
-					Employee emp = HRMS_Registry.getInstance().getEmpList().searchEmployee(firstName, lastName);
-					String priceText = null;
-					Double price = null;
-					do {
-						priceText = JOptionPane.showInputDialog(null, "Set new price");
-						if(isNumeric(priceText)) {
-							price = Double.parseDouble(priceText);
-							emp.getSalary().setPrice(price);
-						}
-						else {
-							JOptionPane.showMessageDialog(null, "Please type a number");
-						}						
-					} while(!isNumeric(priceText));
-					updateModel();
-					FileHandling.exportToFile(HRMS_Registry.getInstance());
+		buttonViewEmpSchedule = new JButton("View Schedule");
+		buttonViewEmpSchedule.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int row= employeesTable.getSelectedRow();
+				if( employeesTableModel.getRowCount()!=0 && row !=-1)
+				{
+					String lastname= (String)employeesTableModel.getValueAt(row, 0);
+					String firstname=(String)employeesTableModel.getValueAt(row, 1);
+					Employee empToView= HRMS_Registry.getInstance().getEmpList().searchEmployee(firstname, lastname);
+					HR_Frame.showEmpSchedulePanel(empToView);
 				}
 			}
+			
 		});
-		panel.add(buttonChangeSalary);
+		panel.add(buttonViewEmpSchedule);
 		
 		employeesTable = new JTable();
 		
 		employeesTableModel = new DefaultTableModel(null, new String[] {
-				"Last Name", "First Name", "Type", "Salary"
+				"Last Name", "First Name", "Type"
 			}) {
 				private static final long serialVersionUID = 1L;
 
@@ -93,7 +96,6 @@ public class SalaryPanel extends JPanel{
 			
 		scrollPane.setViewportView(employeesTable);
 		setLayout(groupLayout);
-
 	}
 	
 	public static void updateModel() {
@@ -103,22 +105,9 @@ public class SalaryPanel extends JPanel{
 		for(Employee employee: reg.getEmpList().getEmployees())
 		{
 			employeesTableModel.addRow(new Object[] {employee.getLastname(),employee.getFirstname(),
-													employee.getType(),employee.getSalary().getPrice()});
+													employee.getType()});
 		}
 		employeesTableModel.fireTableDataChanged();
 		
-	}
-	
-	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        @SuppressWarnings("unused")
-			double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
 	}
 }

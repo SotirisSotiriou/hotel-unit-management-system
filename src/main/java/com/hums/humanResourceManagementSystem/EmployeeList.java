@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 public class EmployeeList implements Serializable{
 
-	
+	private static final long serialVersionUID = 2L;
 	private ArrayList<Employee> employees;
 	
 	public EmployeeList(ArrayList<Employee> employees) {

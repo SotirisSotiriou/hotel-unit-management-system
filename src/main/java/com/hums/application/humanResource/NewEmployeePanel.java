@@ -87,6 +87,14 @@ public class NewEmployeePanel extends JPanel {
 				JOptionPane.showMessageDialog(null, "Employee added successfully");
 				FileHandling.exportToFile(HRMS_Registry.getInstance());
 				
+				textFieldFirstName.setText("");
+				textFieldLastName.setText("");
+				textFieldPhone.setText("");
+				textFieldEmail.setText("");
+				textFieldAddress.setText("");
+				textFieldSSN.setText("");
+				typeModel.setSelectedItem("Receptionist");
+				
 			}
 		});
 		

@@ -36,6 +36,9 @@ public class HR_Frame extends JFrame {
 	private EmployeesPanel employeesPanel;
 	private static EditEmployeePanel editEmployeePanel;
 	private SalaryPanel salariesPanel;
+	private SchedulesPanel schedulePanel;
+	private EmpSchedulePanel empSchedulePanel;
+	private AddSchedulePanel addSchedulePanel;
 	
 	/**
 	 * Launch the application.
@@ -61,11 +64,6 @@ public class HR_Frame extends JFrame {
 		HRMS_Registry reg = (HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser");
 		HRMS_Registry.setInstance(reg);
 		
-		for(int i=0; i < HRMS_Registry.getInstance().getEmpList().getEmployees().size(); i++) {
-			System.out.println(HRMS_Registry.getInstance().getEmpList().getEmployees().get(i).getFirstname() + " " +
-					HRMS_Registry.getInstance().getEmpList().getEmployees().get(i).getLastname());
-			
-		}
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 639, 426);
@@ -101,19 +99,21 @@ public class HR_Frame extends JFrame {
 		employeesPanel = new EmployeesPanel();
 		editEmployeePanel = new EditEmployeePanel();
 		salariesPanel = new SalaryPanel();
+		schedulePanel = new SchedulesPanel();
+		empSchedulePanel = new EmpSchedulePanel();
+		addSchedulePanel = new AddSchedulePanel();
+		
 		
 		
 		cards.add(newEmployeePanel,"newEmp");
 		cards.add(employeesPanel,"employees");
 		cards.add(editEmployeePanel,"editEmp");
 		cards.add(salariesPanel, "salaries");
-		
-		
-		
+		cards.add(schedulePanel, "schedule");
+		cards.add(empSchedulePanel, "empSchedule");
+		cards.add(addSchedulePanel, "addSchedule");
 		
 		cl_cards.show(cards, "employees");
-		
-		
 		
 		buttonEmployees = new JButton("Employees");
 		buttonEmployees.addActionListener(new ActionListener() {
@@ -125,6 +125,15 @@ public class HR_Frame extends JFrame {
 		});
 		
 		buttonSchedule = new JButton("Schedule");
+		buttonSchedule.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SchedulesPanel.updateModel();
+				cl_cards.show(cards, "schedule");
+			}
+			
+		});
 		
 		buttonSalaries = new JButton("Salaries");
 		buttonSalaries.addActionListener(new ActionListener() {
@@ -180,5 +189,14 @@ public class HR_Frame extends JFrame {
 		
 	}
 	
+	public static void showEmpSchedulePanel(Employee emp) {
+		EmpSchedulePanel.setEmployeeToView(emp);
+		cl_cards.show(cards, "empSchedule");
+	}
+	
+	public static void showAddSchedulePanel(Employee emp) {
+		AddSchedulePanel.setEmployee(emp);
+		cl_cards.show(cards, "addSchedule");
+	}
 	
 }

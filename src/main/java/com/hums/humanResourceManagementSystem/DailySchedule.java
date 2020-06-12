@@ -16,6 +16,12 @@ public class DailySchedule implements Serializable{
 		this.day = day;
 		this.hours = hours;
 	}
+	
+	public DailySchedule(String day, Pair<LocalTime, LocalTime> period) {
+		this.day = day;
+		this.hours = new ArrayList<>();
+		this.hours.add(period);
+	}
 
 	public String getDay() {
 		return day;

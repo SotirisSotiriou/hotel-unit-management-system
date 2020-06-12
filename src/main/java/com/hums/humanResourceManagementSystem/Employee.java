@@ -25,9 +25,10 @@ public class Employee implements Serializable{
 		this.ssn = ssn;
 		this.type = type;
 		this.salary = new Salary(type);
+		this.schedule = new Schedule();
 	}
 	
-	public Employee(String firstname, String lastname, String email, String phone, String address, String ssn, EmpType type, double price, Schedule schedule) {
+	public Employee(String firstname, String lastname, String email, String phone, String address, String ssn, EmpType type, Schedule schedule) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
