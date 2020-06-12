@@ -34,6 +34,7 @@ import com.hums.roomManagementSystem.Customer;
 import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.Room;
 import com.hums.roomManagementSystem.RoomReservation;
+import com.hums.tools.data.FileHandling;
 
 public class NewReservationPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -150,6 +151,9 @@ public class NewReservationPanel extends JPanel {
 				RoomReservation reservation = new RoomReservation(aCustomer,checkInDatePicker.getDate(), checkOutDatePicker.getDate(),aRoom, breakfast, launch, dinner, notes);
 				
 				RMS_Registry.getInstance().getReservationList().addReservation(reservation);
+				
+				//Write to File
+				FileHandling.exportToFile(RMS_Registry.getInstance());
 				
 				updateAvailableRoomsList();
 				

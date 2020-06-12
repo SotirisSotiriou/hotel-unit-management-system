@@ -25,6 +25,7 @@ import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.Room;
 import com.hums.roomManagementSystem.RoomPenthouse;
 import com.hums.roomManagementSystem.RoomRegular;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -98,6 +99,10 @@ public class EditRoomPanel extends JPanel {
 				RMS_Registry.getInstance().getRoomList().editRoom(roomToEdit, beds, cost);
 			    
 				JOptionPane.showMessageDialog(null, "Room updated successfully!\nRedirecting to Rooms panel...");
+				
+				//Write to File
+				FileHandling.exportToFile(RMS_Registry.getInstance());
+				
 				RMS_Frame.showCard("rooms");
 				
 				

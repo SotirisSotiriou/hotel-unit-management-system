@@ -23,6 +23,7 @@ import javax.swing.table.TableColumn;
 
 import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.RoomReservation;
+import com.hums.tools.data.FileHandling;
 
 
 public class ReservationsPanel extends JPanel {
@@ -90,6 +91,10 @@ public class ReservationsPanel extends JPanel {
 					int id = (int) reservTableModel.getValueAt(row, 0);
 					
 					RMS_Registry.getInstance().getReservationList().deleteReservationByID(id);
+					
+					//Write to File
+					FileHandling.exportToFile(RMS_Registry.getInstance());
+					
 					
 					updateModel();
 				}

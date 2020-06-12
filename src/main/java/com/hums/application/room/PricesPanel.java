@@ -20,6 +20,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import com.hums.roomManagementSystem.RMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 public class PricesPanel extends JPanel {
 	
@@ -83,6 +84,9 @@ public class PricesPanel extends JPanel {
 				aReg.getRoomList().setVipCost(vipCost);
 				
 				JOptionPane.showMessageDialog(null, "Prices updated successfully");
+				
+				//Write to File
+				FileHandling.exportToFile(RMS_Registry.getInstance());
 				
 				
 			}

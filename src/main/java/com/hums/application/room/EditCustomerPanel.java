@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 
 import com.hums.roomManagementSystem.Customer;
 import com.hums.roomManagementSystem.RMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 public class EditCustomerPanel extends JPanel {
 	
@@ -192,6 +193,9 @@ public class EditCustomerPanel extends JPanel {
 					
 					RMS_Registry.getInstance().getCustomerList().changeCustomerInfo(customerToEdit, lastname, firstname, phone);
 					JOptionPane.showMessageDialog(null, "Customer info updated successfully!\nRedirecting to Customers panel...");
+					
+					//Write to File
+					FileHandling.exportToFile(RMS_Registry.getInstance());
 					
 					RMS_Frame.showCard("customers");
 				}

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.Room;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -79,6 +80,8 @@ public class RoomsPanel extends JPanel {
 					RMS_Frame.showEditRoomCard(roomToEdit);
 					
 					
+					
+					
 				}
 				
 				
@@ -95,6 +98,9 @@ public class RoomsPanel extends JPanel {
 					int number = (int) roomsTableModel.getValueAt(row, 0);
 					
 					RMS_Registry.getInstance().getRoomList().deleteRoomByNumber(number);
+					
+					//Write to File
+					FileHandling.exportToFile(RMS_Registry.getInstance());
 					
 					updateModel();
 				}

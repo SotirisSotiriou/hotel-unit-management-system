@@ -23,6 +23,7 @@ import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.RoomPenthouse;
 import com.hums.roomManagementSystem.RoomRegular;
 import com.hums.roomManagementSystem.RoomVIP;
+import com.hums.tools.data.FileHandling;
 
 
 public class NewRoomPanel extends JPanel {
@@ -105,6 +106,12 @@ public class NewRoomPanel extends JPanel {
 						aReg.getRoomList().addRoom(new RoomPenthouse(roomNumber,floor,beds));
 					else
 						aReg.getRoomList().addRoom(new RoomVIP(roomNumber,floor,beds));
+					
+					
+					//Write to File
+					FileHandling.exportToFile(RMS_Registry.getInstance());
+					
+					
 				}
 			    
 				

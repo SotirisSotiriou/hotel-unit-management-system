@@ -16,8 +16,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.hums.humanResourceManagementSystem.HRMS_Registry;
+import com.hums.restaurantManagementSystem.REMS_Registry;
 import com.hums.roomManagementSystem.Customer;
 import com.hums.roomManagementSystem.RMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -94,6 +97,9 @@ public class CustomersPanel extends JPanel {
 					int id = (int) customersTableModel.getValueAt(row, 0);
 					
 					RMS_Registry.getInstance().getCustomerList().removeCustomerByID(id);
+					
+					//Write to File
+					FileHandling.exportToFile(RMS_Registry.getInstance());
 					
 					updateModel();
 				}

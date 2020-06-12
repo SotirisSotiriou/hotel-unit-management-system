@@ -23,6 +23,7 @@ import com.hums.application.login.LoginFrame;
 import com.hums.roomManagementSystem.Customer;
 import com.hums.roomManagementSystem.RMS_Registry;
 import com.hums.roomManagementSystem.Room;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -74,6 +75,11 @@ public class RMS_Frame extends JFrame {
 	 * Create the frame.
 	 */
 	public RMS_Frame() {
+		
+		RMS_Registry reg = (RMS_Registry) FileHandling.importFromFile("rms-registry.ser");
+		RMS_Registry.setInstance(reg);
+		
+		
 		
 		rMS_Registry = RMS_Registry.getInstance();
 		
