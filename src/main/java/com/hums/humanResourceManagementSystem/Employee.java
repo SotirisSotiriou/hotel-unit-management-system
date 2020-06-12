@@ -27,10 +27,6 @@ public class Employee implements Serializable{
 		this.ssn = ssn;
 		this.type = type;
 		this.salary = new Salary(type);
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/SotirisSotiriou/Hotel-Unit-Management-System
 		this.schedule = new Schedule();
 	}
 	
