@@ -113,6 +113,8 @@ public class LoginFrame extends JFrame {
 		createEventsRegister();
 		createEventsLogin();
 		
+		this.repaint();
+		
 	}
 	
 	private void initComponentsLogin() {
