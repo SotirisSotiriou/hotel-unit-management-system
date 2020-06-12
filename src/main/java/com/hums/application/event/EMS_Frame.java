@@ -169,6 +169,7 @@ public class EMS_Frame extends JFrame {
 							capacity = Integer.parseInt(newHallCapacity);
 							if(capacity!=0) {
 								JOptionPane.showMessageDialog(null, "Hall created successfully");
+								//Write to file
 								FileHandling.exportToFile(EMS_Registry.getInstance());
 							}
 							else {
@@ -236,6 +237,7 @@ public class EMS_Frame extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+		
 	}
 	
 	

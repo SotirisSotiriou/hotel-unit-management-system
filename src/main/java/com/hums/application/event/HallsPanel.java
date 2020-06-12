@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.eventManagementSystem.Hall;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -86,6 +87,8 @@ public class HallsPanel extends JPanel {
 					if(newCapacityAsString.matches("\\d+")) {
 						int newCapacity = Integer.parseInt(newCapacityAsString);
 						selectedHall.setCapacity(newCapacity);
+						//Write to file
+						FileHandling.exportToFile(EMS_Registry.getInstance());
 						updateModel();
 					}else {
 						JOptionPane.showMessageDialog(null, "Capacity input error","InputError",JOptionPane.ERROR_MESSAGE);

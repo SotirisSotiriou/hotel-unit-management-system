@@ -177,6 +177,7 @@ public class NewEventPanel extends JPanel {
 					
 					if(EMS_Registry.getInstance().getEventReservationList().addReservation(aReservation)) {
 						JOptionPane.showMessageDialog(null, "New reservation added!");
+						//Write to file
 						FileHandling.exportToFile(EMS_Registry.getInstance());
 					}else {
 						JOptionPane.showMessageDialog(null, "Error adding reservation!\nPossible causes: No hall available","ERROR",JOptionPane.ERROR_MESSAGE);

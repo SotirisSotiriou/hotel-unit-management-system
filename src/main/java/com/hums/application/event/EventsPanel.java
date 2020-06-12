@@ -87,6 +87,7 @@ public class EventsPanel extends JPanel {
 					int id = (int) eventsTableModel.getValueAt(row, 0);
 					
 					EMS_Registry.getInstance().getEventReservationList().deleteReservationByID(id);
+					//Write to file
 					FileHandling.exportToFile(EMS_Registry.getInstance());
 					updateModel();
 				}
