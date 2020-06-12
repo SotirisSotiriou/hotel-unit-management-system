@@ -5,6 +5,8 @@
  * Server application does not exist because it has been decided
  * that the software will be implemented with local files
  * 
+ * Orders in REMS have not been implemented
+ * 
  * When the software starts on the login screen, the screen elements
  * do not appear.
  * If this happens do the following:
