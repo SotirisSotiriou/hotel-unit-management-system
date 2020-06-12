@@ -22,6 +22,8 @@ import javax.swing.border.LineBorder;
 
 import com.hums.application.login.LoginFrame;
 import com.hums.restaurantManagementSystem.Ingredient;
+import com.hums.restaurantManagementSystem.REMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 
 
@@ -67,6 +69,13 @@ public class REMS_Frame extends JFrame {
 	 * Create the frame.
 	 */
 	public REMS_Frame() {
+		
+		
+		REMS_Registry reg = (REMS_Registry) FileHandling.importFromFile("rems-registry.ser");
+		REMS_Registry.setInstance(reg);
+		
+		
+		
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 613, 435);

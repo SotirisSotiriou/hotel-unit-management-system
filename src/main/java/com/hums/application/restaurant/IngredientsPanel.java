@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.hums.restaurantManagementSystem.Ingredient;
 import com.hums.restaurantManagementSystem.REMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 public class IngredientsPanel extends JPanel {
 	
@@ -73,6 +74,9 @@ public class IngredientsPanel extends JPanel {
 					int id = (int) ingredientTableModel.getValueAt(row, 0);
 					
 					REMS_Registry.getInstance().getStorage().deleteIngredientByID(id);
+					
+					//Write to file
+					FileHandling.exportToFile(REMS_Registry.getInstance());
 					
 					updateModel();
 					

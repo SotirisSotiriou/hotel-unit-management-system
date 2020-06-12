@@ -20,6 +20,8 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 import com.hums.restaurantManagementSystem.Ingredient;
+import com.hums.restaurantManagementSystem.REMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 public class UpdateIngredientStockPanel extends JPanel {
 	
@@ -301,6 +303,9 @@ public class UpdateIngredientStockPanel extends JPanel {
 				ingredientToUpdate.setMax_capacity(Double.parseDouble(spinnerNewMaxQuantity.getValue().toString()));
 				
 				JOptionPane.showMessageDialog(null, "Ingredient stock updated successfully!");
+				
+				//Write to File
+				FileHandling.exportToFile(REMS_Registry.getInstance());
 				
 				
 			}

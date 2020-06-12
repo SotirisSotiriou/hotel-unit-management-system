@@ -17,9 +17,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.restaurantManagementSystem.Dish;
 import com.hums.restaurantManagementSystem.IngredientQuantityPair;
 import com.hums.restaurantManagementSystem.REMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 
 public class DishesPanel extends JPanel {
@@ -98,6 +100,9 @@ public class DishesPanel extends JPanel {
 					
 					
 					JOptionPane.showMessageDialog(null, "Dish deleted successfully!");
+					
+					//Write to file
+					FileHandling.exportToFile(REMS_Registry.getInstance());
 					
 					updateDishesModel();
 					

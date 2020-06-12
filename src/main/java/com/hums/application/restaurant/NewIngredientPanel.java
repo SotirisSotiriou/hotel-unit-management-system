@@ -20,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import com.hums.restaurantManagementSystem.Ingredient;
 import com.hums.restaurantManagementSystem.REMS_Registry;
+import com.hums.tools.data.FileHandling;
 
 public class NewIngredientPanel extends JPanel {
 	
@@ -239,6 +240,10 @@ public class NewIngredientPanel extends JPanel {
 					REMS_Registry.getInstance().getStorage().addIngredient(anIngredient);
 					
 					JOptionPane.showMessageDialog(null, "New Ingredient added successfully!");
+					
+					//Write to file
+					FileHandling.exportToFile(REMS_Registry.getInstance());
+					
 					clearFields();
 				}
 				else {

@@ -28,8 +28,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.restaurantManagementSystem.Dish;
 import com.hums.restaurantManagementSystem.Dish.MealType;
+import com.hums.tools.data.FileHandling;
 import com.hums.restaurantManagementSystem.Ingredient;
 import com.hums.restaurantManagementSystem.IngredientQuantityPair;
 import com.hums.restaurantManagementSystem.REMS_Registry;
@@ -130,7 +132,12 @@ public class CreateDishPanel extends JPanel {
 				
 				REMS_Registry.getInstance().getDishList().addDish(newDish);
 				
+				
+				
 				JOptionPane.showMessageDialog(null, "New dish created successfully!");
+				
+				//Write to file
+				FileHandling.exportToFile(REMS_Registry.getInstance());
 				
 				resetAllFields();
 				
