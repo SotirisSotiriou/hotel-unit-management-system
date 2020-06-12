@@ -1,10 +1,8 @@
 package com.hums.roomManagementSystem;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
-public class RoomReservation implements Serializable{
+public class RoomReservation implements Serializable {
 	
 	/**
 	 * 
@@ -43,20 +41,18 @@ public class RoomReservation implements Serializable{
 	
 	
 
-	public RoomReservation(Customer customer, LocalDate checkInDate, LocalDate checkOutDate, Room room, boolean breakfast, boolean launch, boolean dinner) {
+	public RoomReservation(Customer customer, LocalDate checkInDate, LocalDate checkOutDate, Room room, boolean breakfast, boolean launch, boolean dinner, String notes) {
 		super();
 		this.customer = customer;
 		this.checkInDate = checkInDate;
 		this.checkOutDate = checkOutDate;
 		this.room = room;
 		
-		
 		this.breakfast = breakfast;
 		this.launch = launch;
 		this.dinner = dinner;
 		
-		
-		//this.notes = notes;
+		this.notes = notes;
 		
 		if (customer.getFirstReservationDate()==null)
 			customer.setFirstReservationDate(checkInDate);
@@ -87,7 +83,6 @@ public class RoomReservation implements Serializable{
 		
 		this.reservationCost = (int) ((int) (roomCost * daysStayed) + (mealsCost * daysStayed));
 	}
-	
 	
 	//getters and setters
 	
@@ -173,4 +168,3 @@ public class RoomReservation implements Serializable{
 	
 	
 }
-
