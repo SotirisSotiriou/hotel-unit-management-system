@@ -20,7 +20,6 @@ import javax.swing.table.DefaultTableModel;
 import com.hums.humanResourceManagementSystem.DailySchedule;
 import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
-import com.hums.tools.Pair;
 import com.hums.tools.data.FileHandling;
 
 public class EmpSchedulePanel extends JPanel {
@@ -127,9 +126,7 @@ public class EmpSchedulePanel extends JPanel {
 		scheduleTableModel.setRowCount(0);
 		for(DailySchedule daily: empToView.getSchedule().getWeekSchedule())
 		{
-			for(Pair<LocalTime, LocalTime> period : daily.getHours()) {
-				scheduleTableModel.addRow(new Object[] {daily.getDay(), period.getElement1(), period.getElement2()});
-			}
+			scheduleTableModel.addRow(new Object[] {daily.getDay(), daily.getStart().toLocalTime(), daily.getEnd().toLocalTime()});
 		}
 		scheduleTableModel.fireTableDataChanged();
 	}

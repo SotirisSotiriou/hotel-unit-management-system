@@ -10,21 +10,16 @@ public class DailySchedule implements Serializable{
 	private LocalDateTime start;
 	private LocalDateTime end;
 	
+	
+	
 	public DailySchedule(LocalDateTime start, LocalDateTime end) {
 		this.start = start;
 		this.end = end;
-	}
-	
-	public DailySchedule(String day, Pair<LocalTime, LocalTime> period) {
-		this.day = day;
-		this.hours = new ArrayList<>();
-		this.hours.add(period);
 	}
 
 	public String getDay() {
 		return start.getDayOfWeek().toString();
 	}
-
 
 	public LocalDateTime getStart() {
 		return start;
@@ -41,7 +36,6 @@ public class DailySchedule implements Serializable{
 	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
-	
 	
 	
 }

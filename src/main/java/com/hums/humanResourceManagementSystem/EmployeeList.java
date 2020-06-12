@@ -1,10 +1,8 @@
 package com.hums.humanResourceManagementSystem;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-@SuppressWarnings("serial")
 public class EmployeeList implements Serializable{
 
 	private int nextID;
@@ -71,12 +69,8 @@ public class EmployeeList implements Serializable{
 	
 	public void moveEmpSchedule(Employee employee) {
 		for(DailySchedule ds : employee.getSchedule().getWeekSchedule()) {
-
-			LocalDateTime newStartTime = ds.getStart().plusHours(8);
-			LocalDateTime newEndTime = ds.getEnd().plusHours(8);
-			ds.setStart(newStartTime);
-			ds.setEnd(newEndTime);
-			
+			ds.setStart(ds.getStart().plusHours(8));
+			ds.setEnd(ds.getEnd().plusHours(8));
 		}
 	}
 	

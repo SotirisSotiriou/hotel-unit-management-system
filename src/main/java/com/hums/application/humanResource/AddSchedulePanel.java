@@ -3,6 +3,8 @@ package com.hums.application.humanResource;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
@@ -19,7 +21,6 @@ import javax.swing.border.LineBorder;
 import com.hums.humanResourceManagementSystem.DailySchedule;
 import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
-import com.hums.tools.Pair;
 import com.hums.tools.data.FileHandling;
 
 import java.awt.Font;
@@ -70,7 +71,7 @@ public class AddSchedulePanel extends JPanel{
 		labelDay.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		comboBoxDays = new JComboBox<String>();
-		daysModel = new DefaultComboBoxModel<String>(new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"});
+		daysModel = new DefaultComboBoxModel<String>(new String[] {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"});
 		comboBoxDays.setModel(daysModel);
 		
 		JLabel labelStart = new JLabel("Start");
@@ -219,12 +220,37 @@ public class AddSchedulePanel extends JPanel{
 				int endHour = Integer.parseInt(endHourText);
 				int endMinute = Integer.parseInt(endMinuteText);
 				
-				LocalTime start = LocalTime.of(startHour, startMinute);
-				LocalTime end = LocalTime.of(endHour, endMinute);
+				DailySchedule ds = null;
 				
-				Pair<LocalTime, LocalTime> period = new Pair<LocalTime, LocalTime>(start, end);
-				DailySchedule schedule = new DailySchedule(day, period);
-				employee.getSchedule().addSchedule(schedule);
+				if(day.equals("MONDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 1), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 1), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("TUESDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 2), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 2), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("WEDNESDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 3), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 3), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("THURSDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 4), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 4), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("FRIDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 5), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 5), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("SATURDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 6), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 6), LocalTime.of(endHour, endMinute)));
+					
+				}
+				else if(day.equals("SUNDAY")) {
+					ds = new DailySchedule(LocalDateTime.of(LocalDate.of(2020, 6, 7), LocalTime.of(startHour, startMinute)), LocalDateTime.of(LocalDate.of(2020, 6, 7), LocalTime.of(endHour, endMinute)));
+				}
+				
+				if(!ds.equals(null)) employee.getSchedule().setSchedule(ds);
 				
 				JOptionPane.showMessageDialog(null, "New schedule added");
 				
