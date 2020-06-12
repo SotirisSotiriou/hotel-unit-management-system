@@ -61,7 +61,7 @@ public class REMS_Frame extends JFrame {
 		
 		
 		
-		setMinimumSize(new Dimension(1066, 600));
+		setMinimumSize(new Dimension(1120, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 613, 435);
 		

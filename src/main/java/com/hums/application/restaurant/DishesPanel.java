@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.hums.eventManagementSystem.EMS_Registry;
+
 import com.hums.restaurantManagementSystem.Dish;
 import com.hums.restaurantManagementSystem.IngredientQuantityPair;
 import com.hums.restaurantManagementSystem.REMS_Registry;

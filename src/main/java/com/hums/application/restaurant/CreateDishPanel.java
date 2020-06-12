@@ -28,7 +28,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.restaurantManagementSystem.Dish;
 import com.hums.restaurantManagementSystem.Dish.MealType;
 import com.hums.tools.data.FileHandling;
