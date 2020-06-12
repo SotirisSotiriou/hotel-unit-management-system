@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.hums.application.event.EMS_Frame;
 import com.hums.application.humanResource.HR_Frame;
 import com.hums.tools.data.FileHandling;
 import com.hums.tools.login.UserList;
@@ -189,7 +190,7 @@ public class LoginFrame extends JFrame {
 						break;
 					case 3:
 						JOptionPane.showMessageDialog(null, "Event Manager logged in successfully!");
-						//create new EMS main frame here
+						new EMS_Frame();
 						dispose();
 						break;
 					case 4:
