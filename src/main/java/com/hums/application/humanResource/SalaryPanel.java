@@ -59,12 +59,17 @@ public class SalaryPanel extends JPanel{
 					Double price = null;
 					do {
 						priceText = JOptionPane.showInputDialog(null, "Set new price");
-						if(isNumeric(priceText)) {
+						if(priceText==null) {
+							
+							break;
+							
+						}
+						if(isNumeric(priceText) && Double.parseDouble(priceText) > 0) {
 							price = Double.parseDouble(priceText);
 							emp.getSalary().setPrice(price);
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Please type a number");
+							JOptionPane.showMessageDialog(null, "Please type a valid number");
 						}						
 					} while(!isNumeric(priceText));
 					updateModel();
@@ -77,7 +82,7 @@ public class SalaryPanel extends JPanel{
 		employeesTable = new JTable();
 		
 		employeesTableModel = new DefaultTableModel(null, new String[] {
-				"Last Name", "First Name", "Type", "Salary"
+				"Employee Name", "Type", "Salary"
 			}) {
 				private static final long serialVersionUID = 1L;
 
@@ -102,7 +107,7 @@ public class SalaryPanel extends JPanel{
 		employeesTableModel.setRowCount(0);
 		for(Employee employee: reg.getEmpList().getEmployees())
 		{
-			employeesTableModel.addRow(new Object[] {employee.getLastname(),employee.getFirstname(),
+			employeesTableModel.addRow(new Object[] {employee.toString(),
 													employee.getType(),employee.getSalary().getPrice()});
 		}
 		employeesTableModel.fireTableDataChanged();

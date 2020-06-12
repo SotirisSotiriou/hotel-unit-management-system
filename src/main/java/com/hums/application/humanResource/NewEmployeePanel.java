@@ -82,18 +82,33 @@ public class NewEmployeePanel extends JPanel {
 					emtype = EmpType.EVENT_MANAGER;
 				Employee emp = new Employee(firstName,lastName,email,phone,
 											address,ssn,emtype);
-				HRMS_Registry.getInstance().getEmpList().addEmployee(emp);
-				EmployeesPanel.updateModel();
-				JOptionPane.showMessageDialog(null, "Employee added successfully");
-				FileHandling.exportToFile(HRMS_Registry.getInstance());
 				
-				textFieldFirstName.setText("");
-				textFieldLastName.setText("");
-				textFieldPhone.setText("");
-				textFieldEmail.setText("");
-				textFieldAddress.setText("");
-				textFieldSSN.setText("");
-				typeModel.setSelectedItem("Receptionist");
+				
+				if(firstName.equals("") || lastName.equals("") || phone.equals("") || email.equals("") 
+						|| address.equals("")|| ssn.equals("")) {
+					
+					JOptionPane.showMessageDialog(null, "Fields cannot be empty!", "Error", JOptionPane.ERROR_MESSAGE);
+					
+				}else {
+					
+					HRMS_Registry.getInstance().getEmpList().addEmployee(emp);
+					EmployeesPanel.updateModel();
+					JOptionPane.showMessageDialog(null, "Employee added successfully");
+					FileHandling.exportToFile(HRMS_Registry.getInstance());
+					
+					textFieldFirstName.setText("");
+					textFieldLastName.setText("");
+					textFieldPhone.setText("");
+					textFieldEmail.setText("");
+					textFieldAddress.setText("");
+					textFieldSSN.setText("");
+					typeModel.setSelectedItem("Receptionist");
+					
+					
+				}
+				
+				
+				
 				
 			}
 		});
