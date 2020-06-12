@@ -1,50 +1,83 @@
 package com.hums.restaurantManagementSystem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Dish {
 	
+	private int id;
 	private String name;
-	private int[] menu;
-	public HashMap<Ingredient, Double> ingredients;
 	
-	public Dish(String name_, HashMap<Ingredient, Double> ingredients_)
-	{
-		this.name = name_;
-		this.ingredients = ingredients_;
-		menu = new int[7];
+	public enum MealType{
+		Breakfast,
+		Launch,
+		Dinner
 	}
+	
+	private MealType mealType;
+	
+	private ArrayList<Integer> menu = new ArrayList<Integer>(7);
+	
+	public ArrayList<IngredientQuantityPair> ingredientsList;
+	
+	public Dish(String name, ArrayList<IngredientQuantityPair> ingredients, MealType mealType)
+	{
+		this.name = name;
+		this.ingredientsList = ingredients;
+		this.mealType = mealType;
+		
+		for (int i = 0; i < menu.size(); i++) {
+			menu.set(i, 0);
+		}
+		
+	}
+	
+	
 	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public HashMap<Ingredient, Double> getIngredients() {
-		return ingredients;
+	
+	
+	public MealType getMealType() {
+		return mealType;
 	}
-	public void setIngredients(HashMap<Ingredient, Double> ingredients) {
+
+
+	public void setMealType(MealType mealType) {
+		this.mealType = mealType;
+	}
+
+
+	public ArrayList<IngredientQuantityPair> getIngredientsList() {
+		return ingredientsList;
+	}
+	
+	
+	public void setIngredients(ArrayList<IngredientQuantityPair> ingredients) {
 		//read from file//
-		this.ingredients = ingredients;
+		this.ingredientsList = ingredients;
 	}
-	public int[] getMenu() {
+	
+	public ArrayList<Integer> getMenu() {
 		return menu;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void changeMenu(ArrayList<Integer> dayList) {
-		//gets an arraylist of integers and for each one of them makes the representing menu[x] equal to 1
-		//the menu[] table is initialized to 0 so if menu[x] isn't altered by this method (due to dayList's contents) is returned as 0
-		//days represented: menu[x]
-		//x=0:(Monday) x=1:(Tuesday) x=2:(Wednesday) x=3:(Thursday) x=4:(Friday) x=5:(Saturday) x=6:(Sunday)
-		int i;
-		for (i=0;i<7;i++) {
-			menu[i]=0;
-		}
-		for (i=0;i<dayList.size();i++) {
-			menu[dayList.get(i)]=1;
-		}
+		
+		menu = dayList;
+		
 	}
 	
 	public boolean equals(Object obj) {
@@ -56,6 +89,13 @@ public class Dish {
 		}
 		return flag;
 	}
+
+	@Override
+	public String toString() {
+		return id + ". " + name;
+	}
+	
+	
 	
 	
 }

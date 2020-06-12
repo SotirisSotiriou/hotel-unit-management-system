@@ -1,11 +1,11 @@
 package com.hums.restaurantManagementSystem;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DishList implements Serializable{
+public class DishList {
 	
-	private static final long serialVersionUID = 1L;
+	private int nextID;
+	
 	private ArrayList<Dish> dishes = new ArrayList<Dish>();
 	
 	public DishList()
@@ -13,10 +13,6 @@ public class DishList implements Serializable{
 		dishes = new ArrayList<Dish>();
 	}
 	
-	public void setDishes(ArrayList<Dish> dishes)
-	{
-		this.dishes = dishes;
-	}
 	
 	public ArrayList<Dish> getDishes()
 	{
@@ -24,23 +20,11 @@ public class DishList implements Serializable{
 	}
 	
 	public void addDish(Dish dish)
-	{	//searches for the new "dish" in  the "dishes" ArrayList
-		//if it finds it, replaces the old dish with the new version of itself
-		//if it doesn't find it, the new dish is added in the end of the ArrayList
-		int flag = 0;
-		
-		for (int i=0;i<dishes.size();i++) {
-			if (dishes.get(i).equals(dish)) {
-				dishes.remove(i);
-				dishes.add(i, dish);
-				flag = 1;
-				break;
-			}
-		}
-		if (flag==0) {
-			dishes.add(dish);
-		}
-		//write to file//
+	{	
+		nextID++;
+		dish.setId(nextID);
+		dishes.add(dish);
+
 	}
 	
 	public void removeDish(String dishname)
@@ -53,6 +37,17 @@ public class DishList implements Serializable{
 				break;
 			}
 		}
+	}
+	
+	public Dish getDishByToString(String string) {
+		
+		for (Dish dish : dishes) {
+			
+			if(dish.toString().equals(string))
+				return dish;
+		}
+		return null;
+		
 	}
 	
 	public void changeDishMenu(String dishname, ArrayList<Integer> dailyMenu) {
@@ -72,6 +67,7 @@ public class DishList implements Serializable{
 		}
 	}
 	
+	/*
 	public ArrayList<int[]> getDishMenu() {
 		//gets all menu arrays from every dish in the DishList
 		//returns them in an ArrayList<int[]>
@@ -83,7 +79,9 @@ public class DishList implements Serializable{
 		}
 		return dishMenu;
 	}
+	*/
 	
+	/*
 	public ArrayList<Dish> getTodayMenu(int day){
 		//scans the ArrayList dishes and checks the array menu of class Dish
 		//if the position menu[day] is equal to 1 adds the dish to the  ArrayList<dish> todayMenu
@@ -105,4 +103,5 @@ public class DishList implements Serializable{
 		}
 		return todayMenu;
 	}
+	*/
 }
