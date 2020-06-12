@@ -1,24 +1,27 @@
 package com.hums.application.humanResource;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.hums.application.login.LoginFrame;
 import com.hums.humanResourceManagementSystem.Employee;
 import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.tools.data.FileHandling;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class HR_Frame extends JFrame {
 
@@ -38,6 +41,9 @@ public class HR_Frame extends JFrame {
 	private SchedulesPanel schedulesPanel;
 	private EmpSchedulePanel empSchedulePanel;
 	private AddSchedulePanel addSchedulePanel;
+	private JMenuBar menuBar;
+	private JMenu menuFile;
+	private JMenuItem menuItemLogout;
 	
 
 	public HR_Frame() {
@@ -47,6 +53,23 @@ public class HR_Frame extends JFrame {
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 639, 426);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		menuFile = new JMenu("File");
+		menuBar.add(menuFile);
+		
+		menuItemLogout = new JMenuItem("Logout");
+		menuItemLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new LoginFrame();
+				dispose();
+				
+			}
+		});
+		menuFile.add(menuItemLogout);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
