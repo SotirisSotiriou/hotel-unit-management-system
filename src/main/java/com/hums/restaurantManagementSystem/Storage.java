@@ -1,57 +1,73 @@
 package com.hums.restaurantManagementSystem;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ArrayList;
 
-public class Storage implements Serializable{
-
-	private static final long serialVersionUID = 1L;
-	public HashMap<Ingredient, Double> ingredients = new HashMap<>();
+public class Storage {
+	
+	public ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+	
+	private int nextID=0;
 	
 	public Storage()
 	{
-		this.ingredients = new HashMap<>();
-	}
-	
-	public void setIngredients(HashMap<Ingredient, Double> ingredients)
-	{
-		this.ingredients = ingredients;
+		this.ingredients = new ArrayList<Ingredient>();
 	}
 	
 	public void addIngredient(Ingredient ingredient)
 	{
-		ingredients.put(ingredient, 0.0);
+		nextID++;
+		ingredient.setId(nextID);
+		ingredients.add(ingredient);
 		//write to file//
 	}
 	
 	public void addIngredient(Ingredient ingredient, double quantity) {
-		ingredients.put(ingredient, quantity);
+		ingredients.add(ingredient);
+		ingredient.setQuantity(quantity);
 	}
 	
-	public HashMap<Ingredient, Double> getIngredients()
+	public ArrayList<Ingredient> getIngredients()
 	{
 		return ingredients;
 	}
 	
-	public Double getIngredientQuantity(Ingredient ingredient)
+	public Ingredient getIngredientByID(int id)
 	{
-		return ingredients.get(ingredient);
+		for (Ingredient ingredient : ingredients) {
+			if(ingredient.getId()==id)
+				return ingredient;
+		}
+		return null;
 	}
 	
-	public void setIngredientQuantity(Ingredient ingredient, Double quantity) 
+	public Ingredient getIngredientByToString(String string)
 	{
-		ingredients.replace(ingredient, ingredients.get(ingredient), quantity);
+		for (Ingredient ingredient : ingredients) {
+			if(ingredient.toString().equals(string))
+				return ingredient;
+		}
+		return null;
 	}
 	
-	public void createStorageOrder(HashMap<Ingredient, Double> ingredients) 
+	public void setIngredientQuantity(int id, Double quantity) 
 	{
-		 Iterator<Entry<Ingredient, Double>> it = ingredients.entrySet().iterator();
-		 while (it.hasNext()) {
-				Map.Entry<Ingredient, Double> pair = (Map.Entry<Ingredient, Double>)it.next();
-		        setIngredientQuantity(pair.getKey(), this.ingredients.get(pair.getKey()) - pair.getValue());
-		 }
+		for (Ingredient ingredient : ingredients) {
+			if(ingredient.getId()==id)
+				ingredient.setQuantity(quantity);
+		}
 	}
+	
+	public void deleteIngredientByID(int id) {
+		
+		for (int i = 0; i < ingredients.size(); i++) {
+			
+			if(ingredients.get(i).getId()==id)
+				ingredients.remove(i);
+			
+		}
+		
+		
+		
+	}
+	
 }

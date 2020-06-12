@@ -1,14 +1,15 @@
 package com.hums.humanResourceManagementSystem;
 
-import com.hums.tools.Pair;
-import java.util.ArrayList;
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class EmployeeList implements Serializable{
 
+	private int nextID;
 	
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Employee> employees;
 	
 	public EmployeeList(ArrayList<Employee> employees) {
@@ -29,7 +30,12 @@ public class EmployeeList implements Serializable{
 	
 	
 	public void addEmployee(Employee employee) {
+		
+		nextID++;
+		employee.setId(nextID);
+
 		this.employees.add(employee);
+		
 	}
 	
 	
@@ -65,12 +71,12 @@ public class EmployeeList implements Serializable{
 	
 	public void moveEmpSchedule(Employee employee) {
 		for(DailySchedule ds : employee.getSchedule().getWeekSchedule()) {
-			for(Pair<LocalTime, LocalTime> hoursPair : ds.getHours()) {
-				LocalTime newStartTime = hoursPair.getElement1().plusHours(8);
-				LocalTime newEndTime = hoursPair.getElement2().plusHours(8);
-				hoursPair.setElement1(newStartTime);
-				hoursPair.setElement2(newEndTime);
-			}
+
+			LocalDateTime newStartTime = ds.getStart().plusHours(8);
+			LocalDateTime newEndTime = ds.getEnd().plusHours(8);
+			ds.setStart(newStartTime);
+			ds.setEnd(newEndTime);
+			
 		}
 	}
 	
