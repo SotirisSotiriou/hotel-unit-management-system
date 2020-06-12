@@ -43,7 +43,7 @@ public class REMS_Registry implements Serializable{
 		this.storage = storage;
 	}
 
-	public DishList getMenu() {
+	public DishList getDishList() {
 		return menu;
 	}
 
