@@ -13,12 +13,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import com.hums.application.login.LoginFrame;
 import com.hums.eventManagementSystem.EMS_Registry;
 import com.hums.eventManagementSystem.Hall;
 import com.hums.tools.data.FileHandling;
@@ -29,6 +33,8 @@ public class EMS_Frame extends JFrame {
 	private JPanel contentPane;
 	private JPanel cards;
 	private CardLayout cl_cards;
+	private JMenu menuFile;
+	private JMenuItem menuItemLogout;
 
 	/**
 	 * Launch the application.
@@ -57,6 +63,23 @@ public class EMS_Frame extends JFrame {
 		setMinimumSize(new Dimension(1066, 600));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 735, 473);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		menuFile = new JMenu("File");
+		menuBar.add(menuFile);
+		
+		menuItemLogout = new JMenuItem("Logout");
+		menuItemLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+		
+				new LoginFrame();
+				dispose();
+				
+			}
+		});
+		menuFile.add(menuItemLogout);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
