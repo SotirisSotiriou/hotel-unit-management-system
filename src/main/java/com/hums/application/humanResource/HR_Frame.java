@@ -1,7 +1,6 @@
 package com.hums.application.humanResource;
 
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -36,31 +35,12 @@ public class HR_Frame extends JFrame {
 	private EmployeesPanel employeesPanel;
 	private static EditEmployeePanel editEmployeePanel;
 	private SalaryPanel salariesPanel;
-	private SchedulesPanel schedulePanel;
+	private SchedulesPanel schedulesPanel;
 	private EmpSchedulePanel empSchedulePanel;
 	private AddSchedulePanel addSchedulePanel;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HR_Frame frame = new HR_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
 	public HR_Frame() {
-		@SuppressWarnings("unused")
 		HRMS_Registry reg = (HRMS_Registry) FileHandling.importFromFile("hrms-registry.ser");
 		HRMS_Registry.setInstance(reg);
 		
@@ -99,7 +79,7 @@ public class HR_Frame extends JFrame {
 		employeesPanel = new EmployeesPanel();
 		editEmployeePanel = new EditEmployeePanel();
 		salariesPanel = new SalaryPanel();
-		schedulePanel = new SchedulesPanel();
+		schedulesPanel = new SchedulesPanel();
 		empSchedulePanel = new EmpSchedulePanel();
 		addSchedulePanel = new AddSchedulePanel();
 		
@@ -109,7 +89,7 @@ public class HR_Frame extends JFrame {
 		cards.add(employeesPanel,"employees");
 		cards.add(editEmployeePanel,"editEmp");
 		cards.add(salariesPanel, "salaries");
-		cards.add(schedulePanel, "schedule");
+		cards.add(schedulesPanel, "schedules");
 		cards.add(empSchedulePanel, "empSchedule");
 		cards.add(addSchedulePanel, "addSchedule");
 		
@@ -124,13 +104,13 @@ public class HR_Frame extends JFrame {
 			}
 		});
 		
-		buttonSchedule = new JButton("Schedule");
+		buttonSchedule = new JButton("Schedules");
 		buttonSchedule.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				SchedulesPanel.updateModel();
-				cl_cards.show(cards, "schedule");
+				cl_cards.show(cards, "schedules");
 			}
 			
 		});
@@ -186,17 +166,22 @@ public class HR_Frame extends JFrame {
 	public static void showEditEmployeePanel(Employee emp) {
 		editEmployeePanel.setPanelEmployee(emp);
 		cl_cards.show(cards, "editEmp");
-		
 	}
 	
 	public static void showEmpSchedulePanel(Employee emp) {
 		EmpSchedulePanel.setEmployeeToView(emp);
+		EmpSchedulePanel.updateModel();
 		cl_cards.show(cards, "empSchedule");
 	}
 	
 	public static void showAddSchedulePanel(Employee emp) {
 		AddSchedulePanel.setEmployee(emp);
 		cl_cards.show(cards, "addSchedule");
+	}
+	
+	public static void showSchedulesPanel() {
+		cl_cards.show(cards, "schedules");
+		SchedulesPanel.updateModel();
 	}
 	
 }

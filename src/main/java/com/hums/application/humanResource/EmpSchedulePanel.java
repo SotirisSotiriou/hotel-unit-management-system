@@ -19,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
 
 import com.hums.humanResourceManagementSystem.DailySchedule;
 import com.hums.humanResourceManagementSystem.Employee;
+import com.hums.humanResourceManagementSystem.HRMS_Registry;
 import com.hums.tools.Pair;
+import com.hums.tools.data.FileHandling;
 
 public class EmpSchedulePanel extends JPanel {
 
@@ -30,6 +32,7 @@ public class EmpSchedulePanel extends JPanel {
 	private static DefaultTableModel scheduleTableModel;
 	private JButton buttonAddSchedule;
 	private JButton buttonRemoveSchedule;
+	private JButton buttonBack;
 	private static Employee empToView = null;
 	
 	public EmpSchedulePanel() {
@@ -58,6 +61,17 @@ public class EmpSchedulePanel extends JPanel {
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 		);
 		
+		buttonBack = new JButton("Back");
+		panel.add(buttonBack);
+		buttonBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HR_Frame.showSchedulesPanel();
+			}
+			
+		});
+		
 		buttonAddSchedule = new JButton("Add Schedule");
 		buttonAddSchedule.addActionListener(new ActionListener() {
 
@@ -82,6 +96,7 @@ public class EmpSchedulePanel extends JPanel {
 					LocalTime end = (LocalTime) scheduleTableModel.getValueAt(row, 2);
 					empToView.getSchedule().removeSchedule(empToView.getSchedule().searchSchedule(day, start, end));
 					updateModel();
+					FileHandling.exportToFile(HRMS_Registry.getInstance());
 				}
 			}
 			

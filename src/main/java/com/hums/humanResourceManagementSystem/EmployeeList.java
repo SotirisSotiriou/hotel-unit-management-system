@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.time.LocalTime;
 
+@SuppressWarnings("serial")
 public class EmployeeList implements Serializable{
 
-	private static final long serialVersionUID = 2L;
+	
 	private ArrayList<Employee> employees;
 	
 	public EmployeeList(ArrayList<Employee> employees) {

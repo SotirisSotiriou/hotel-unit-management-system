@@ -3,18 +3,25 @@ package com.hums.application.humanResource;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 
+import com.hums.humanResourceManagementSystem.DailySchedule;
 import com.hums.humanResourceManagementSystem.Employee;
+import com.hums.humanResourceManagementSystem.HRMS_Registry;
+import com.hums.tools.Pair;
+import com.hums.tools.data.FileHandling;
+
 import java.awt.Font;
 import java.awt.FlowLayout;
 
@@ -25,6 +32,7 @@ public class AddSchedulePanel extends JPanel{
 	
 	private static Employee employee;
 	private JButton buttonAdd;
+	private JButton buttonBack;
 	private JComboBox<String> comboBoxDays;
 	private DefaultComboBoxModel<String> daysModel;
 	private JComboBox<String> comboBoxStartHours;
@@ -179,6 +187,17 @@ public class AddSchedulePanel extends JPanel{
 		panel.setLayout(gl_panel);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		buttonBack = new JButton("Back");
+		panel_1.add(buttonBack);
+		buttonBack.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HR_Frame.showEmpSchedulePanel(employee);
+				EmpSchedulePanel.updateModel();
+			}
+			
+		});
 		
 		buttonAdd = new JButton("Add");
 		panel_1.add(buttonAdd);
@@ -200,7 +219,22 @@ public class AddSchedulePanel extends JPanel{
 				int endHour = Integer.parseInt(endHourText);
 				int endMinute = Integer.parseInt(endMinuteText);
 				
+				LocalTime start = LocalTime.of(startHour, startMinute);
+				LocalTime end = LocalTime.of(endHour, endMinute);
 				
+				Pair<LocalTime, LocalTime> period = new Pair<LocalTime, LocalTime>(start, end);
+				DailySchedule schedule = new DailySchedule(day, period);
+				employee.getSchedule().addSchedule(schedule);
+				
+				JOptionPane.showMessageDialog(null, "New schedule added");
+				
+				FileHandling.exportToFile(HRMS_Registry.getInstance());
+				
+				comboBoxDays.setSelectedItem("Monday");
+				comboBoxStartHours.setSelectedItem("00");
+				comboBoxStartMinutes.setSelectedItem("00");
+				comboBoxEndHours.setSelectedItem("00");
+				comboBoxEndMinutes.setSelectedItem("00");
 			}
 			
 		});	

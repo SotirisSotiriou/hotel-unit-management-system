@@ -6,6 +6,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -83,6 +84,7 @@ public class EditEmployeePanel extends JPanel {
 				empToEdit.setSsn(ssn);
 				EmployeesPanel.updateModel();
 				FileHandling.exportToFile(HRMS_Registry.getInstance());
+				JOptionPane.showMessageDialog(null, "Employee Info Changed");
 			}
 		});
 		panel_1.add(buttonUpdateEmployee);
@@ -292,6 +294,13 @@ public class EditEmployeePanel extends JPanel {
 		textFieldOldEmail.setText(emp.getEmail());
 		textFieldOldAddress.setText(emp.getAddress());
 		textFieldOldSSN.setText(emp.getSsn());
+		
+		textFieldNewLastName.setText(emp.getLastname());
+		textFieldNewFirstName.setText(emp.getFirstname());
+		textFieldNewPhone.setText(emp.getPhone());
+		textFieldNewEmail.setText(emp.getEmail());
+		textFieldNewAddress.setText(emp.getAddress());
+		textFieldNewSSN.setText(emp.getSsn());
 		empToEdit = emp;
 	}
 }

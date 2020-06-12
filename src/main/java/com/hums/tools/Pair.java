@@ -1,11 +1,20 @@
 package com.hums.tools;
 
-public class Pair<E1,E2>{
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Pair<E1,E2> implements Serializable{
+	
 	private E1 element1;
 	private E2 element2;
 	
 	public Pair() {
 		
+	}
+	
+	public Pair(E1 e1, E2 e2) {
+		element1 = e1;
+		element2 = e2;
 	}
 	
 	public E1 getElement1() {

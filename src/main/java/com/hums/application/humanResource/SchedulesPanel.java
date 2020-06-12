@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -52,7 +53,9 @@ public class SchedulesPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				HRMS_Registry.getInstance().getEmpList().moveSchedule();
+				updateModel();
 				FileHandling.exportToFile(HRMS_Registry.getInstance());
+				JOptionPane.showMessageDialog(null, "Schedule moved");
 			}
 			
 		});
@@ -71,6 +74,7 @@ public class SchedulesPanel extends JPanel{
 					String firstname=(String)employeesTableModel.getValueAt(row, 1);
 					Employee empToView= HRMS_Registry.getInstance().getEmpList().searchEmployee(firstname, lastname);
 					HR_Frame.showEmpSchedulePanel(empToView);
+					EmpSchedulePanel.updateModel();
 				}
 			}
 			
