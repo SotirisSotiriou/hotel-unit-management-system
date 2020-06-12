@@ -26,6 +26,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.hums.application.event.EMS_Frame;
 import com.hums.application.humanResource.HR_Frame;
+import com.hums.application.restaurant.REMS_Frame;
+import com.hums.application.room.RMS_Frame;
 import com.hums.tools.data.FileHandling;
 import com.hums.tools.login.UserList;
 
@@ -182,7 +184,7 @@ public class LoginFrame extends JFrame {
 						break;
 					case 1:
 						JOptionPane.showMessageDialog(null, "Receptionist logged in successfully!");
-						//create new RMS main frame here
+						new RMS_Frame();
 						dispose();
 						break;
 					case 2:
@@ -197,7 +199,7 @@ public class LoginFrame extends JFrame {
 						break;
 					case 4:
 						JOptionPane.showMessageDialog(null, "Restaurant Manager logged in successfully!");
-						//create new REMS main frame here
+						new REMS_Frame();
 						dispose();
 						break;
 					}

@@ -4,7 +4,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,21 +48,7 @@ public class REMS_Frame extends JFrame {
 	private JMenu menuFile;
 	private JMenuItem menuItemLogout;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					REMS_Frame frame = new REMS_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -238,6 +223,9 @@ public class REMS_Frame extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+		
+		this.setVisible(true);
+		
 	}
 	
 	public static void showUpdateIngredientStockPanel(Ingredient ingredientToUpdate) {

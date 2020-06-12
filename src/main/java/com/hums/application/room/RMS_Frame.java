@@ -3,7 +3,6 @@ package com.hums.application.room;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -55,26 +54,14 @@ public class RMS_Frame extends JFrame {
 	private static EditRoomPanel editRoomPanel;
 	private static EditCustomerPanel editCustomerPanel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RMS_Frame frame = new RMS_Frame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public RMS_Frame() {
+		
+		
 		
 		RMS_Registry reg = (RMS_Registry) FileHandling.importFromFile("rms-registry.ser");
 		RMS_Registry.setInstance(reg);
@@ -259,6 +246,8 @@ public class RMS_Frame extends JFrame {
 		
 		panel.setLayout(gl_panel);
 		contentPane.setLayout(gl_contentPane);
+		
+		this.setVisible(true);
 		
 	}
 
