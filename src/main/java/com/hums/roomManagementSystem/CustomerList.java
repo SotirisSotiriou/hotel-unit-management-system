@@ -1,16 +1,14 @@
 package com.hums.roomManagementSystem;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
-
-public class CustomerList implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class CustomerList{
 	
 	private int nextID =0;
+	
 	private ArrayList<Customer> customers;
+	
 	
 	public CustomerList(ArrayList<Customer> customers) {
 		this.customers = customers;
@@ -41,7 +39,7 @@ public class CustomerList implements Serializable{
 		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
 		
 		for(Customer customer : this.customers) {
-			if( customer.getFirstname().contains(term) || customer.getLastname().contains(term) || customer.getPhone().contains(term) ) {
+			if( customer.getFirstName().toUpperCase().contains(term.toUpperCase()) || customer.getLastName().toUpperCase().contains(term.toUpperCase()) || customer.getPhone().contains(term) ) {
 				foundCustomers.add(customer);
 			}
 		}
@@ -63,8 +61,8 @@ public class CustomerList implements Serializable{
 	}
 	
 	public void changeCustomerInfo(Customer customer, String lastname, String firstname, String phone) {
-		customer.setLastname(lastname);
-		customer.setFirstname(firstname);
+		customer.setLastName(lastname);
+		customer.setFirstName(firstname);
 		customer.setPhone(phone);
 	}
 	
@@ -80,12 +78,13 @@ public class CustomerList implements Serializable{
 	}
 	
 	public boolean customerExists(String lastname, String firstname, String phone) {
+		boolean exists = false;
 		for(Customer c : this.customers) {
-			if(c.getLastname().equals(lastname) && c.getFirstname().equals(firstname) && c.getPhone().equals(phone)) {
-				return true;
+			if(c.getLastName().equals(lastname) && c.getLastName().equals(firstname) && c.getPhone().equals(phone)) {
+				exists = true;
 			}
 		}
-		return false;
+		return exists;
 	}
 	
 	public boolean customerExists(Customer customer) {
@@ -114,5 +113,16 @@ public class CustomerList implements Serializable{
 		
 		return null;
 	}
+	
+	public Customer getCustomerByID(int id) {
+		
+		for (Customer customer : customers) {
+			if(customer.getId()==id)
+				return customer;
+		}
+		
+		return null;
+	}
+	
 	
 }

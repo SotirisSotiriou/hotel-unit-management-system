@@ -1,29 +1,71 @@
 package com.hums.roomManagementSystem;
-
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class Customer implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int id;
-	private String lastname;
-	private String firstname;
+public class Customer {
+	
+	
+	private String lastName;
+	private String firstName;
 	private String phone;
-	private LocalDate firstReservationDate;
-	private RoomReservationList reservationHistory;
+	private int id;
+	private LocalDate firstReservationDate = null;
+	private ArrayList<RoomReservation> reservationsHistory;
 	
-	private static int nextID = 0;
+	private boolean active;
 	
-	public Customer(String lastname, String firstname, String phone, LocalDate date) {
-		this.id = nextID;
-		nextID++;
-		this.lastname = lastname;
-		this.firstname = firstname;
+	//diafores alles idiotites pelati 3enodoxeiou
+	
+	public Customer(String lastName, String firstName, String phone) {
+		
+		
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
 		this.phone = phone;
-		this.firstReservationDate = date;
+		
+		
+	}
+	
+	
+	
+	public void setFirstReservationDate(LocalDate firstReservationDate) {
+		this.firstReservationDate = firstReservationDate;
+	}
+
+
+	public void addReservationToCustomerHistory(RoomReservation aReserv) {
+		
+		reservationsHistory.add(aReserv);
+		
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public LocalDate getFirstReservationDate() {
+		return firstReservationDate;
+	}
+
+	public ArrayList<RoomReservation> getReservationsHistory() {
+		return reservationsHistory;
 	}
 
 	public int getId() {
@@ -34,53 +76,32 @@ public class Customer implements Serializable{
 		this.id = id;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getPhone() {
-		return phone;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public LocalDate getFirstReservationDate() {
-		return firstReservationDate;
-	}
-
-	public void setFirstReservationDate(LocalDate firstReservationDate) {
-		this.firstReservationDate = firstReservationDate;
-	}
-
-	public static int getNextID() {
-		return nextID;
-	}
-
-	public RoomReservationList getReservationHistory() {
-		return reservationHistory;
-	}
-
-	public void setReservationHistory(RoomReservationList reservationHistory) {
-		this.reservationHistory = reservationHistory;
+	public void setReservationsHistory(ArrayList<RoomReservation> reservationsHistory) {
+		this.reservationsHistory = reservationsHistory;
 	}
 	
 	
 	public String toString() {
-		return id+"."+lastname+" "+firstname+" "+phone;
+		
+		return id+"."+lastName+" "+firstName+" "+phone;
+		
 	}
+	
+	
+	
+	
+	
 	
 }
